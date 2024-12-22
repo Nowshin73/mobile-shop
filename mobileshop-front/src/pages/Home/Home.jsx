@@ -5,6 +5,7 @@ import "./Home.css"
 import Swal from 'sweetalert2'
 
 import Product from "../../pages/Products/Product";
+import Banner from "../../components/banner/Banner";
 const Home = () => {
 
   // const {keyword} = useParams();
@@ -334,6 +335,7 @@ const Home = () => {
   return (
     <Fragment>
       <div className="bg-white">
+        <Banner></Banner>
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <div className="flex items-center justify-center">
             <h2 className=" mb-4 p-4 w-fit border-b-2 self-center">Explore Our Products</h2>
