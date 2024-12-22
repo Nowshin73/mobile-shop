@@ -15,6 +15,7 @@ import Cart from '../pages/Buyer/Cart'
 import Login from '../pages/LoginSignUp/Login'
 import Wishlist from '../pages/Buyer/Wishlist'
 import Register from '../pages/LoginSignUp/Register'
+import Auth from '../pages/LoginSignUp/Auth'
 
 
 export const router = createBrowserRouter([
@@ -28,11 +29,7 @@ export const router = createBrowserRouter([
         },
         {
             path: '/login',
-            element: <Login></Login>
-        },
-        {
-            path: '/signup',
-            element: <Register></Register>
+            element: <Auth></Auth>
         },
        
         {
