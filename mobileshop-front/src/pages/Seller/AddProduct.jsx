@@ -1,6 +1,45 @@
 import React from 'react'
 
 const AddProduct = () => {
+  const addProduct = event => {
+    event.preventDefault();
+    const form = event.target;
+
+      const productData = { 
+        name:form.name.value,
+        description:form.description.value,
+        price:form.price.value,
+        category:form.category.value,
+        brand:form.brand.value,
+        images:form.images.value
+      };
+  
+    
+    fetch('http://localhost:5000/products', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(productData)
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+          if (data.insertedId) {
+            Swal.fire({
+              title: 'success',
+              text: 'Product Added successfully',
+              icon: 'success',
+              confirmButtonText: 'Cool'
+            });
+            navigate("/seller/dashboard");
+          }
+         
+      })
+    form.reset();
+
+}
+
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -11,7 +50,7 @@ const AddProduct = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-6">
+          <form onSubmit={addProduct} className="space-y-6">
             <div>
               <label htmlFor="name" className="block text-sm/6 font-medium text-gray-900">
                 Product Name
@@ -20,7 +59,7 @@ const AddProduct = () => {
                 <input
                   id="name"
                   name="name"
-                  type="name"
+                  type="text"
                   placeholder='Product Name '
                   required
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -32,14 +71,15 @@ const AddProduct = () => {
                 Product Description
               </label>
               <div className="mt-2">
-                <input
+                <textarea
                   id="description"
                   name="description"
-                  type="description"
+                  type="text"
                   placeholder='Product Description'
                   required
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 />
+                
               </div>
             </div>
             <div>
@@ -50,7 +90,7 @@ const AddProduct = () => {
                 <input
                   id="price"
                   name="price"
-                  type="price"
+                  type="number"
                   placeholder='Product Price '
                   required
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -65,8 +105,23 @@ const AddProduct = () => {
                 <input
                   id="images"
                   name="images"
-                  type="images"
+                  type="text"
                   placeholder='Product Image URL'
+                  required
+                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="name" className="block text-sm/6 font-medium text-gray-900">
+                Product Brand
+              </label>
+              <div className="mt-2">
+                <input
+                  id="brand"
+                  name="brand"
+                  type="brand"
+                  placeholder='Product Brand'
                   required
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 />
