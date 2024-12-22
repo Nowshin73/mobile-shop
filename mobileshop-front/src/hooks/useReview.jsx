@@ -8,7 +8,7 @@ const useReview = () => {
     const { refetch, data: Reviews = [] } = useQuery({
         queryKey: ['Reviews', user?.email],
         queryFn: async () => {
-            const res = await fetch(`https://nid-correction.vercel.app/reviewed_applications`)
+            const res = await fetch(`http://localhost:5000/reviewed_applications`)
             return res.json();
         },
     });

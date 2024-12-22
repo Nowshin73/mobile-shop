@@ -8,7 +8,7 @@ const useUser = () => {
     const { refetch, data: Users = [] } = useQuery({
         queryKey: ['Users', user?.email],
         queryFn: async () => {
-            const res = await fetch(`https://nid-correction.vercel.app/users`)
+            const res = await fetch(`http://localhost:5000/users`)
             return res.json();
         },
     });

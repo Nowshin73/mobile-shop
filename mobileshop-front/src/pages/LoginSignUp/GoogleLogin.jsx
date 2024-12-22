@@ -38,7 +38,7 @@ const GoogleLogin = () => {
           createdAt: loggedInUser.metadata.creationTime,
         };
 
-        fetch("https://nid-correction.vercel.app/users", {
+        fetch("http://localhost:5000/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -8,7 +8,7 @@ const useApproved = () => {
     const { refetch, data: Approves = [] } = useQuery({
         queryKey: ['Approves', user?.email],
         queryFn: async () => {
-            const res = await fetch(`https://nid-correction.vercel.app/approved_applications`)
+            const res = await fetch(`http://localhost:5000/approved_applications`)
             return res.json();
         },
     });

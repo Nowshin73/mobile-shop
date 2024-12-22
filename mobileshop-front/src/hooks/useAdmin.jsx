@@ -11,7 +11,7 @@ const useAdmin = () => {
     queryFn: async () => {
      
       const res = await axios.get(
-        `https://nid-correction.vercel.app/api/users/check_admin/${user?.email}`
+        `http://localhost:5000/api/users/check_admin/${user?.email}`
       );
       return res.data.isAdmin;
     },
