@@ -17,6 +17,7 @@ import Wishlist from '../pages/Buyer/Wishlist'
 import Register from '../pages/LoginSignUp/Register'
 import Auth from '../pages/LoginSignUp/Auth'
 import AddProduct from '../pages/Seller/AddProduct'
+import UpdateProduct from '../pages/Seller/UpdateProduct'
 
 
 export const router = createBrowserRouter([
@@ -74,6 +75,10 @@ export const router = createBrowserRouter([
             path: '/seller/product/new',
             element: <AddProduct></AddProduct>
         },
+        {
+            path: '/seller/product/update',
+            element: <UpdateProduct></UpdateProduct>
+        }
         
     ]
     }
