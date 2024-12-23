@@ -135,30 +135,31 @@ const UpdateProduct = () => {
                         <label htmlFor="name" className="block text-sm/6 font-medium text-gray-900">
                             Product Brand
                         </label>
-                        <div className="mt-2">
-                            <input
+                        <div className="mt-2 grid grid-cols-1">
+                            <select
                                 id="brand"
                                 name="brand"
-                                type="brand"
-                                placeholder='Product Brand'
-                                required
-                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                            />
+                                className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                            >
+                                <option>Samsumg</option>
+                                <option>Apple</option>
+                                <option>OPPO</option>
+                            </select>
                         </div>
                     </div>
                     <div>
                         <label htmlFor="name" className="block text-sm/6 font-medium text-gray-900">
                             Product Category
                         </label>
-                        <div className="mt-2">
-                            <input
+                        <div className="mt-2 grid grid-cols-1">
+                            <select
                                 id="category"
                                 name="category"
-                                type="category"
-                                placeholder='Product Category'
-                                required
-                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                            />
+                                className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                            >
+                                <option>Android</option>
+                                <option>iPhone</option>
+                            </select>
                         </div>
                     </div>
                     <div>

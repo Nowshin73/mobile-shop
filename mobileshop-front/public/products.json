@@ -1,0 +1,47 @@
+[
+    {
+        "name": "Samsung Galaxy F13 (4/64GB)",
+        "description": "Display: 6.6 FHD+ PLS LCD Touchscreen, Processor: Octa-Core 2GHz, Exynos 850 (8nm),Camera: Triple 50+5+2 MP on Rear, 8MP Selfie,Features: 6000mAh Battery, Side Mounted Fingerprint",
+        "price": 16500,
+        "images": "https://i.ibb.co.com/q1Xnd3m/image.png",
+        "brand": "Samsung",
+        "category": "Android",
+        "stock":10
+    },
+    {
+        "name": "Samsung Galaxy A04 (4/64GB)",
+        "description": "Display: 6.5 720 x 1600 (HD+), Processor: Mediatek MT6765 Helio P35 (12nm), Camera: 50MP + 2MP Rear, 5MP Front, Features: 5000mAh Li-Ion Battery",
+        "price": 14999,
+        "images": "https://i.ibb.co.com/2tDTmZw/image.png",
+        "brand": "Samsung",
+        "category": "Android",
+        "stock":15
+    },
+    {
+        "name": "Samsung Galaxy M14 4G (4/64GB)",
+        "description": "Display: 6.7 FHD+ (1080 x 2400), PLS LCD, 90Hz,Processor: Qualcomm Snapdragon 680 4G (6 nm), Camera: Triple 50+2+2MP Rear, 13MP Front, Features: Li-Po 5000mAh, 25W Fast Charging",
+        "price": 16990,
+        "images": "https://i.ibb.co.com/4mb4vy1/image.png",
+        "brand": "Samsung",
+        "category": "Android",
+        "stock":20
+    },
+    {
+        "name": "iPhone 15 128GB Black (Singapore)",
+        "description": "Model: iPhone 15, Display: 6.1 Super Retina XDR OLED Display, Processor: A16 Bionic Chip, Storage: 128GB, Camera: 48MP + 12MP Rear, 12MP Front, Features: Dynamic Island, Face ID, eSIM, USB Type-C 3.0",
+        "price": 121000,
+        "images": "https://i.ibb.co.com/p17n6r6/image.png",
+        "brand": "Apple",
+        "category": "iPhone",
+        "stock":10
+    },
+    {
+        "name": "iPhone 16 128GB (Australia)",
+        "description": "Display: 6.1 Super Retina XDR OLED Display, Processor: A18 Bionic Chip (3nm), Storage: 128GB, Camera: Dual 48MP Fusion + 12MP Ultra Wide on Back, 12MP on Front, Features: New Camera Control Button, Face ID, USB Type-C, Spatial Video Support",
+        "price": 153900,
+        "images": "https://i.ibb.co.com/WyYXz4G/image.png",
+        "brand": "Apple",
+        "category": "iPhone",
+        "stock":8
+    }
+]
