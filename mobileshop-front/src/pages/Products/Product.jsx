@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react'
-import {  BsEye } from 'react-icons/bs'
+import { BsEye } from 'react-icons/bs'
 import { MdClose, MdFavorite, MdFavoriteBorder } from 'react-icons/md'
 import ReactStars from "react-rating-stars-component"
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const Product = ({ product }) => {
   const [open, setOpen] = useState(false);
   const [fav, setFav] = useState(false);
@@ -11,12 +11,12 @@ const Product = ({ product }) => {
     edit: false,
     color: "rgba(20,20,20,0.5)",
     activeColor: "orange",
-    size:window.innerWidth < 600 ? 20 : 25,
+    size: window.innerWidth < 600 ? 20 : 25,
     value: product.ratings,
-    isHalf:true
+    isHalf: true
   }
   return (
-    <div className='product-card group' key={product._id}>
+    <div className='product-card group card bg-base-100 w-80 shadow-xl mx-10' key={product._id}>
 
       <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg xl:aspect-h-8 xl:aspect-w-7">
         {fav ? <><MdFavorite onClick={() => setFav(false)} className='relative top-8 right-4 text-fuchsia-600 z-[5] text-xl float-right cursor-pointer'></MdFavorite> <br /></> :
@@ -31,10 +31,10 @@ const Product = ({ product }) => {
         >
           <img
             alt={product.name}
-            src={product.images[0].url}
+            src={product.images}
             className={
               open
-                ? "fixed w-[90vw] h-[80vh] md:w-[80vh] md:h-[90vh] z-40 object-contain"
+                ? "fixed w-[90vw] h-[50vh] md:w-[80vh] md:h-[50vh] z-40 object-contain"
                 : "h-full w-full relative rounded -top-5 object-cover object-center group-hover:opacity-75"
             }
           />
@@ -49,16 +49,19 @@ const Product = ({ product }) => {
         </div>
 
       </div>
-      <div className='relative -top-5'>
-       
-        <div className="flex justify-between items-baseline"><h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
-        <span className='text-violet-600 text-xs'>Product #{product._id}</span>
-        <div className="rating">
-        <span className='text-xs' > {product.numOfReview} reviews</span>  <ReactStars {...options}/>
-        </div>
+      <div className='relative -top-5 card-body'>
+
+        <div className="flex flex-col justify-start items-center">
+          <h2 className="card-title">
+          {product.name}
+          </h2>
+
+          {/* <div className="rating">
+            <ReactStars {...options} />
+          </div> */}
         </div>
         <p className="mt-1 text-lg font-medium text-gray-900 mb-3">${product.price}</p>
-        <Link key={product._id} to={`/product/${product._id}`} ><button className='btn-primary'>View</button></Link>
+        <Link key={product._id} to={`/product/${product._id}`} ><button className="btn btn-primary">View</button></Link>
       </div>
     </div>
   )

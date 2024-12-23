@@ -7,9 +7,15 @@ import Swal from 'sweetalert2'
 import Product from "../../pages/Products/Product";
 import Banner from "../../components/banner/Banner";
 const Home = () => {
+const [products, setProducts] = useState([]);
 
-  // const {keyword} = useParams();
-  const products = [{
+useEffect(() => {
+      fetch('http://localhost:5000/products')
+      .then(res => res.json())
+      .then(data => setProducts(data));
+},[])
+
+  const productsData = [{
     name: "Matrix Tennis necklace1",
     description: "Delivering a modern take on a truly classic style, this Matrix Tennis necklace is distinguished by the purity and elegance of its shimmering clear stones and rhodium plated design. Each individual stone works beautifully with the next, creating an endless stream of glamour that is perfect for your everyday look. Enjoy it for yourself, or as a gift for someone special.",
     price: 500,
@@ -341,7 +347,7 @@ const Home = () => {
             <h2 className=" mb-4 p-4 w-fit border-b-2 self-center">Explore Our Products</h2>
           </div>
 
-          <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+          <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
             {products && products.map((product) => (
               <Product key={product._id} product={product} />
             ))}
