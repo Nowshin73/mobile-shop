@@ -4,7 +4,11 @@ import { BsEye } from 'react-icons/bs'
 import { MdClose, MdFavorite, MdFavoriteBorder } from 'react-icons/md'
 import ReactStars from "react-rating-stars-component"
 import { Link } from 'react-router-dom'
+import useUser from '../../hooks/useUser'
+import Swal from 'sweetalert2'
 const Product = ({ product }) => {
+  const [User] = useUser();
+  const userId = User?._id;
   const [open, setOpen] = useState(false);
   const [fav, setFav] = useState(false);
   const options = {
@@ -15,11 +19,49 @@ const Product = ({ product }) => {
     value: product.ratings,
     isHalf: true
   }
+  const handleAddToFav = (id) => {
+     
+      const favItem = {
+        userId: userId,
+        productId: id,
+        name: product.name,
+        stock: product.stock,
+        image:product.images,
+        price: product.price,
+      };
+  
+      fetch("http://localhost:5000/fav", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(favItem),
+      })
+        .then((response) => response.json())
+        .then(() => {
+          Swal.fire({
+            title: "Success!",
+            text: "Product added to Favourites!",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        })
+        .catch((error) => {
+          Swal.fire({
+            title: "Error!",
+            text: "Failed to add product to Favourites.",
+            icon: "error",
+            confirmButtonText: "Ok",
+          });
+        });
+        setFav(false)
+    };
+  
   return (
     <div className='group card bg-base-100 p-1 w-[300px] h-[400px] shadow-xl ' key={product._id}>
 
       <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg xl:aspect-h-8 xl:aspect-w-7">
-        {fav ? <><MdFavorite onClick={() => setFav(false)} className='relative top-8 right-4 text-fuchsia-600 z-[5] text-xl float-right cursor-pointer'></MdFavorite> <br /></> :
+        {fav ? <><MdFavorite onClick={() =>handleAddToFav(product._id)} className='relative top-8 right-4 text-fuchsia-600 z-[5] text-xl float-right cursor-pointer'></MdFavorite> <br /></> :
           <><MdFavoriteBorder onClick={() => setFav(true)} className='relative top-8 right-4 text-fuchsia-600 z-[5] text-xl float-right cursor-pointer'></MdFavoriteBorder><br /></>}
         <BsEye onClick={() => setOpen(true)} className='relative top-8 right-4 z-[5] text-xl float-right cursor-pointer'></BsEye>
         <div

@@ -93,7 +93,7 @@ app.get('/cart', async (req, res) => {
   const result = await cartCollection.find().toArray();
   res.send(result);
 })
-
+// my cart
 app.get(`/cart`, async (req, res) => {
   const { userId } = req.query;
   if (!userId) {
@@ -121,7 +121,24 @@ app.post('/fav', async (req, res) => {
   res.send(result);
 });
 
-
+app.get('/fav', async (req, res) => {
+  const result = await favCollection.find().toArray();
+  res.send(result);
+})
+// my fav
+app.get(`/fav`, async (req, res) => {
+  const { userId } = req.query;
+  if (!userId) {
+    return res.status(400).send({ error: 'User ID is required' });
+  }
+  try {
+    const favItems = await favCollection.find({ userId }); 
+    console.log(favItems); // Replace 'Cart' with your cart model
+    res.status(200).json(favItems);
+  } catch (error) {
+    res.status(500).send({ error: 'Failed to fetch cart items' });
+  }
+});
 app.delete('/fav/:id', async (req, res) => {
   const id = req.params.id;
   const query = { _id: new ObjectId(id) };

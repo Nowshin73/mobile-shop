@@ -80,7 +80,7 @@ const MyProduct = () => {
 
   return (
     <div className="flex h-full w-[60%] flex-col justify-center  overflow-y-scroll bg-white shadow-xl">
-      {myProducts ? (
+      {myProducts? (
         <div >
           <div className=" overflow-y-auto px-4 py-6 sm:px-6">
 
@@ -120,7 +120,7 @@ const MyProduct = () => {
             </div>
           </div>
         </div>)
-        : <div className='flex flex-col justify-center items-center'> <p>Your cart is empty.</p></div>
+        : <div className='flex flex-col justify-center items-center'> <p>You have no product.</p></div>
       }
     </div>
 
