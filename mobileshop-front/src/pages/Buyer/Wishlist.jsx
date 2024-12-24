@@ -24,7 +24,7 @@ const Wishlist = () => {
 
     const fetchMyProducts = async () => {
       try {
-        const response = await fetch(`http://localhost:5000https://mobiverse.vercel.app/fav?userId=${userId}`, {
+        const response = await fetch(`https://mobiverse.vercel.app/fav?userId=${userId}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ const Wishlist = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:5000https://mobiverse.vercel.app/fav/${id}`)
+      .delete(`https://mobiverse.vercel.app/fav/${id}`)
       .then((response) => {
         Swal.fire({
           position: 'center',

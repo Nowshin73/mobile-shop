@@ -14,7 +14,7 @@ const Home = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000https://mobiverse.vercel.app/products')
+    fetch('https://mobiverse.vercel.app/products')
       .then(res => res.json())
       .then(data => setProducts(data));
   }, [])

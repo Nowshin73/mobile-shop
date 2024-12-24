@@ -24,7 +24,7 @@ const Cart = () => {
 
     const fetchCartProducts = async () => {
       try {
-        const response = await fetch(`http://localhost:5000https://mobiverse.vercel.app/cart?userId=${userId}`, {
+        const response = await fetch(`https://mobiverse.vercel.app/cart?userId=${userId}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ const Cart = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:5000https://mobiverse.vercel.app/cart/${id}`)
+      .delete(`https://mobiverse.vercel.app/cart/${id}`)
       .then((response) => {
         Swal.fire({
           position: 'center',

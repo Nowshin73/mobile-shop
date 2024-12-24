@@ -11,7 +11,7 @@ const useAdmin = () => {
     queryFn: async () => {
      
       const res = await axios.get(
-        `http://localhost:5000https://mobiverse.vercel.app/api/users/check_admin/${user?.email}`
+        `https://mobiverse.vercel.app/api/users/check_admin/${user?.email}`
       );
       return res.data.isAdmin;
     },

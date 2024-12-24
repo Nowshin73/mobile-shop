@@ -8,7 +8,7 @@ const useApproved = () => {
     const { refetch, data: Approves = [] } = useQuery({
         queryKey: ['Approves', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000https://mobiverse.vercel.app/approved_applications`)
+            const res = await fetch(`https://mobiverse.vercel.app/approved_applications`)
             return res.json();
         },
     });

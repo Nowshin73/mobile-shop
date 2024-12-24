@@ -8,7 +8,7 @@ const UserList = () => {
   const handleRole = (userId, userRole) => {
     const updatedInfo = { role: userRole};
     console.log(updatedInfo)
-    axios.patch(`http://localhost:5000https://mobiverse.vercel.app/users/${userId}`, updatedInfo)
+    axios.patch(`https://mobiverse.vercel.app/users/${userId}`, updatedInfo)
       .then(response => {
         Swal.fire({
           position: 'center',
@@ -31,13 +31,13 @@ const UserList = () => {
   };
 
   useEffect(() => {
-    fetch('http://localhost:5000https://mobiverse.vercel.app/users')
+    fetch('https://mobiverse.vercel.app/users')
       .then(res => res.json())
       .then(data => setUsers(data));
   }, [])
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:5000https://mobiverse.vercel.app/users/${id}`)
+      .delete(`https://mobiverse.vercel.app/users/${id}`)
       .then((response) => {
         Swal.fire({
           position: 'center',

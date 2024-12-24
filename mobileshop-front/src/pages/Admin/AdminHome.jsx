@@ -6,7 +6,7 @@ const AdminHome = () => {
 
   useEffect(() => {
     // Fetch users data
-    fetch("http://localhost:5000https://mobiverse.vercel.app/users")
+    fetch("https://mobiverse.vercel.app/users")
       .then((res) => res.json())
       .then((data) => setUsers(data))
       .catch((error) => console.error("Error fetching users:", error));

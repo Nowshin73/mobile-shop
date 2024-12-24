@@ -47,7 +47,7 @@ export const router = createBrowserRouter([
             {
                 path: '/products/:id',
                 element: <ProductDetails></ProductDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000https://mobiverse.vercel.app/products/${params.id}`)
+                loader: ({ params }) => fetch(`https://mobiverse.vercel.app/products/${params.id}`)
             },
             {
                 path: '/about',
