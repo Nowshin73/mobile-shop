@@ -58,7 +58,7 @@ const Wishlist = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:5000/products/${id}`)
+      .delete(`http://localhost:5000/fav/${id}`)
       .then((response) => {
         Swal.fire({
           position: 'center',
@@ -72,11 +72,10 @@ const Wishlist = () => {
         setMyFavs((prevCartProducts) => prevCartProducts.filter((cartitem) => cartitem._id !== id));
       })
       .catch((error) => {
-        Swal.fire('Error deleting Cart Item:', error);
+        Swal.fire('Error deleting fav Item:', error);
       });
   };
 
- 
 
   return (
     <div className="flex h-full w-[60%] flex-col justify-center  overflow-y-scroll bg-white shadow-xl">
@@ -106,15 +105,12 @@ const Wishlist = () => {
                         <div className="flex flex-1 items-end justify-between text-sm">
                           <p className="text-gray-500">Qty {product.stock}</p>
 
+                         
                           <div className="flex">
-                            <button onClick={() => handleDelete(product._id)} type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
+                          <button onClick={() => handleDelete(product._id)} type="button" className="font-medium text-white btn btn-error">
                               Remove
                             </button>
-                          </div>
-                          <div className="flex">
-                           <Link to={"/"}> <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
-                              Update
-                            </button></Link>
+                           
                           </div>
                         </div>
                       </div>

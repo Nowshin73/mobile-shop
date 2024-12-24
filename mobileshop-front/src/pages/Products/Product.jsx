@@ -19,11 +19,11 @@ const Product = ({ product }) => {
     value: product.ratings,
     isHalf: true
   }
-  const handleAddToFav = (id) => {
+  const handleAddToFav = () => {
      
       const favItem = {
         userId: userId,
-        productId: id,
+        productId: product._id,
         name: product.name,
         stock: product.stock,
         image:product.images,
@@ -61,7 +61,7 @@ const Product = ({ product }) => {
     <div className='group card bg-base-100 p-1 w-[300px] h-[400px] shadow-xl ' key={product._id}>
 
       <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg xl:aspect-h-8 xl:aspect-w-7">
-        {fav ? <><MdFavorite onClick={() =>handleAddToFav(product._id)} className='relative top-8 right-4 text-fuchsia-600 z-[5] text-xl float-right cursor-pointer'></MdFavorite> <br /></> :
+        {fav ? <><MdFavorite onClick={handleAddToFav} className='relative top-8 right-4 text-fuchsia-600 z-[5] text-xl float-right cursor-pointer'></MdFavorite> <br /></> :
           <><MdFavoriteBorder onClick={() => setFav(true)} className='relative top-8 right-4 text-fuchsia-600 z-[5] text-xl float-right cursor-pointer'></MdFavoriteBorder><br /></>}
         <BsEye onClick={() => setOpen(true)} className='relative top-8 right-4 z-[5] text-xl float-right cursor-pointer'></BsEye>
         <div
