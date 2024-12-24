@@ -75,8 +75,12 @@ app.post('/cart', async (req, res) => {
   const result = await cartCollection.insertOne(cart);
   res.send(result);
 });
-
 app.get('/cart', async (req, res) => {
+  const result = await cartCollection.find().toArray();
+  res.send(result);
+})
+
+app.get(`/cart`, async (req, res) => {
   const { userId } = req.query;
   if (!userId) {
     return res.status(400).send({ error: 'User ID is required' });
