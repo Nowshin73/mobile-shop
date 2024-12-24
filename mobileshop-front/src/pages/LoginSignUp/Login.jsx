@@ -18,9 +18,13 @@ const Login = () => {
   useEffect(() => {
     // Ensure user is loaded and the admin status is available
     if (user) {
-      if (User && User.isAdmin === "yes") {
+      if (User && User.role === "admin") {
         navigate('/admin/dashboard');
-      } else {
+      } 
+      if (User && User.role === "seller") {
+        navigate('/seller/dashboard');
+      }
+      if (User && User.role === "buyer") {
         navigate('/user/dashboard');
       }
 

@@ -3,18 +3,21 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-//import "react-tabs/style/react-tabs.css";
-import GoogleLogin from "../../pages/LoginSignUp/GoogleLogin"
-import useAdmin from "../../hooks/useAdmin";
+import GoogleLogin from "../../pages/LoginSignUp/GoogleLogin";
+import useUser from "../../hooks/useUser";
 
 const Register = () => {
   const [show, setShow] = useState(true);
   const [error, setError] = useState("");
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [isAdmin] = useAdmin();
-  const from = isAdmin ? "/dashboard/adminhome" : "/dashboard/user";
+  const [User] = useUser();
+  const role = User?.role;
 
+  const validatePassword = (password) => {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return regex.test(password);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,18 +29,24 @@ const Register = () => {
 
     setError("");
 
+    if (!validatePassword(password)) {
+      setError(
+        "Password must be at least 8 characters long, include uppercase and lowercase letters, a number, and a special character."
+      );
+      return;
+    }
+
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
 
         updateUserProfile(name, photo)
-
           .then(() => {
             const savedUser = {
               email: result.user.email,
               displayName: name,
-              photoURL: photo,
-              role: "buyer"
+              photoURL: photo || "https://i.ibb.co.com/PwHygL1/image.png",
+              role: "buyer",
             };
             fetch(`http://localhost:5000/users`, {
               method: "POST",
@@ -45,7 +54,7 @@ const Register = () => {
                 "content-type": "application/json",
               },
               body: JSON.stringify(savedUser),
-            })
+            });
           })
           .then((res) => res.json())
           .then(() => {
@@ -57,7 +66,7 @@ const Register = () => {
           icon: "success",
           confirmButtonText: "Ok",
         });
-        navigate(from);
+        navigate("/user/dashboard");
       })
       .catch((error) => {
         setError(error.message);
@@ -71,9 +80,7 @@ const Register = () => {
       <div className="flex flex-col max-w-lg p-6 rounded-md sm:p-5 w-full bg-slate-100 text-gray-900">
         <div className="mb-8 text-center ">
           <h1 className="my-3 text-4xl font-bold">Sign Up</h1>
-          <p className="text-sm text-gray-400">
-            Welcome to MobiVerse App
-          </p>
+          <p className="text-sm text-gray-400">Welcome to MobiVerse App</p>
         </div>
         <form
           onSubmit={handleSubmit}
@@ -82,8 +89,6 @@ const Register = () => {
           className="space-y-6 ng-untouched ng-pristine ng-valid"
         >
           <div className="grid grid-cols-1 gap-4">
-
-
             <div>
               <div className="flex justify-between">
                 <label htmlFor="name" className="text-sm mb-2">
@@ -96,7 +101,6 @@ const Register = () => {
                 required
                 placeholder="type your name"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#4361ee] bg-gray-200 text-gray-900"
-                data-temp-mail-org="0"
               />
             </div>
             <div>
@@ -111,7 +115,6 @@ const Register = () => {
                 required
                 placeholder="type email address"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#4361ee] bg-gray-200 text-gray-900"
-                data-temp-mail-org="0"
               />
             </div>
 
@@ -144,16 +147,9 @@ const Register = () => {
               <input
                 type="url"
                 name="photURL"
-                required
                 placeholder="url"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#4361ee] bg-gray-200 text-gray-900"
               />
-              {/* <span
-                onClick={() => setShowConfirm(!showConfirm)}
-                className="cursor-pointer absolute right-0 top-1/2 mt-2 me-4"
-              >
-                {showConfirm ? <FaEyeSlash /> : <FaEye />}
-              </span> */}
             </div>
           </div>
           <p className="text-center text-red-500 font-medium">{error}</p>

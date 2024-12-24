@@ -16,10 +16,14 @@ const GoogleLogin = () => {
   useEffect(() => {
     // Ensure user is loaded and the admin status is available
     if (user) {
-      if (User && User.isAdmin === "yes") {
-        navigate('/dashboard/admin');
-      } else {
-        navigate('/dashboard/user');
+      if (User && User.role === "admin") {
+        navigate('/admin/dashboard');
+      } 
+      if (User && User.role === "seller") {
+        navigate('/seller/dashboard');
+      }
+      if (User && User.role === "buyer") {
+        navigate('/user/dashboard');
       }
 
     }
@@ -48,10 +52,14 @@ const GoogleLogin = () => {
           .then((res) => res.json())
           .then(() => {
             if (user) {
-              if (User && User.isAdmin === "yes") {
-                navigate('/dashboard/admin');
-              } else {
-                navigate('/dashboard/user');
+              if (User && User.role === "admin") {
+                navigate('/admin/dashboard');
+              } 
+              if (User && User.role === "seller") {
+                navigate('/seller/dashboard');
+              }
+              if (User && User.role === "buyer") {
+                navigate('/user/dashboard');
               }
         
             }
