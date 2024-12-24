@@ -83,9 +83,9 @@ const Cart = () => {
 );
 
   return (
-    <div>
+    <div className="flex h-full w-[60%] flex-col justify-center  overflow-y-scroll bg-white shadow-xl">
       {cartProducts ? (
-        <div className="flex h-full w-[80%] flex-col justify-center  overflow-y-scroll bg-white shadow-xl">
+        <div >
           <div className=" overflow-y-auto px-4 py-6 sm:px-6">
 
             <div className="mt-8">
@@ -94,7 +94,7 @@ const Cart = () => {
                   {cartProducts.map((product) => (
                     <li key={product._id} className="flex py-6">
                       <div className="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
-                        <img alt={product.images} src={product.images} className="size-full object-cover" />
+                        <img alt={product.image} src={product.image} className="size-full object-cover" />
                       </div>
 
                       <div className="ml-4 flex flex-1 flex-col">

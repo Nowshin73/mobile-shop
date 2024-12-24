@@ -17,17 +17,27 @@ const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const [User] = useUser();
   const userId = User?._id;
-
-  const handleAddToCart = () => {
-    if (quantity > product.stock) {
-      Swal.fire({
-        title: "Error!",
-        text: "Quantity exceeds stock availability!",
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
-      return;
+  const handleIncreaseQuantity = () => {
+    if (quantity < product.Stock) {
+      setQuantity(prev => prev + 1);
     }
+  };
+
+  const handleDecreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(prev => prev - 1);
+    }
+  };
+  const handleAddToCart = () => {
+    // if (quantity > product.stock) {
+    //   Swal.fire({
+    //     title: "Error!",
+    //     text: "Quantity exceeds stock availability!",
+    //     icon: "error",
+    //     confirmButtonText: "Ok",
+    //   });
+    //   return;
+    // }
 
     const cartItem = {
       userId: userId,
@@ -110,7 +120,9 @@ const ProductDetails = () => {
               <div className="add-cart flex items-center gap-5">
                 <div className="quantity flex items-center gap-2">
                   <button
-                    onClick={() => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))}
+                    onClick={handleDecreaseQuantity} 
+                    
+                    // onClick={() => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))}
                     className='px-4 text-2xl border bg-slate-500 hover:bg-slate-700 text-white'
                     disabled={!userId || User?.role !== "buyer"}
                   >
@@ -120,10 +132,12 @@ const ProductDetails = () => {
                     value={quantity}
                     type='number'
                     readOnly
+                    min={1}
+                    max={product.stock}
                     className='text-center p-2 border-none w-10'
                   />
                   <button
-                    onClick={() => setQuantity((prev) => (prev < product.stock ? prev + 1 : prev))}
+                    onClick={handleIncreaseQuantity} 
                     className='px-4 text-2xl border bg-slate-500 hover:bg-slate-700 text-white'
                     disabled={!userId || User?.role !== "buyer"}
                   >
