@@ -34,6 +34,7 @@ const ProductDetails = () => {
       productId: product._id,
       name: product.name,
       quantity,
+      image:product.images,
       price: product.price,
     };
 

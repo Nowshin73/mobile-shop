@@ -22,6 +22,7 @@ import BuyerHome from '../pages/Buyer/BuyerHome'
 import AdminHome from '../pages/Admin/AdminHome'
 import UserList from '../pages/Admin/UserList'
 import SellerHome from '../pages/Seller/SellerHome'
+import MyProduct from '../pages/Seller/MyProduct'
 
 
 export const router = createBrowserRouter([
@@ -95,6 +96,10 @@ export const router = createBrowserRouter([
                     {
                         path: '/seller/dashboard',
                         element: <SellerHome></SellerHome>
+                    },
+                    {
+                        path: '/seller/dashboard/my_products',
+                        element: <MyProduct></MyProduct>
                     },
                     {
                         path: '/seller/dashboard/product/new',

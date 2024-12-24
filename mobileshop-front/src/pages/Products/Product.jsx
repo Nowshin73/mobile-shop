@@ -16,7 +16,7 @@ const Product = ({ product }) => {
     isHalf: true
   }
   return (
-    <div className='group card bg-base-100 p-1 w-[300px] h-[500px] shadow-xl ' key={product._id}>
+    <div className='group card bg-base-100 p-1 w-[300px] h-[400px] shadow-xl ' key={product._id}>
 
       <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg xl:aspect-h-8 xl:aspect-w-7">
         {fav ? <><MdFavorite onClick={() => setFav(false)} className='relative top-8 right-4 text-fuchsia-600 z-[5] text-xl float-right cursor-pointer'></MdFavorite> <br /></> :
@@ -49,7 +49,7 @@ const Product = ({ product }) => {
         </div>
 
       </div>
-      <div className='relative -top-5 card-body'>
+      <div className='relative -top-5 flex flex-col justify-center items-center'>
 
         <div className="flex flex-col justify-start items-center">
           <h2 className="font-semibold">
@@ -60,7 +60,7 @@ const Product = ({ product }) => {
             <ReactStars {...options} />
           </div> */}
         </div>
-        <p className="mt-1 text-sm font-medium text-gray-900 mb-3">${product.price}</p>
+        <p className="mt-1 text-xl font-semibold text-red-800 my-2 ">{product.price}</p>
         <Link key={product._id} to={`/products/${product._id}`} ><button className="btn btn-primary">View</button></Link>
       </div>
     </div>

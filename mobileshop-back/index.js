@@ -76,6 +76,20 @@ app.post('/cart', async (req, res) => {
   res.send(result);
 });
 
+app.get('/cart', async (req, res) => {
+  const { userId } = req.query;
+  if (!userId) {
+    return res.status(400).send({ error: 'User ID is required' });
+  }
+  try {
+    const cartItems = await cartCollection.find({ userId }); 
+    console.log(cartItems); // Replace 'Cart' with your cart model
+    res.status(200).json(cartItems);
+  } catch (error) {
+    res.status(500).send({ error: 'Failed to fetch cart items' });
+  }
+});
+
 
 app.delete('/cart/:id', async (req, res) => {
   const id = req.params.id;
