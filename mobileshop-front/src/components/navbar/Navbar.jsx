@@ -26,6 +26,9 @@ const Navbar = () => {
             <ActiveLink to='/about' className="text-white hover:text-gray-300">
              About
             </ActiveLink>
+            <ActiveLink to='/contact' className="text-white hover:text-gray-300">
+             Contact
+            </ActiveLink>
             {user && User && role ==="buyer" && (
               <>
                 <ActiveLink to='/user/dashboard' className="text-white  hover:text-gray-300">

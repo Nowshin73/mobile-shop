@@ -54,15 +54,15 @@ const Product = ({ product }) => {
             confirmButtonText: "Ok",
           });
         });
-        setFav(false)
+        setFav(true)
     };
   
   return (
     <div className='group card bg-base-100 p-1 w-[300px] h-[400px] shadow-xl ' key={product._id}>
 
       <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg xl:aspect-h-8 xl:aspect-w-7">
-        {fav ? <><MdFavorite onClick={handleAddToFav} className='relative top-8 right-4 text-fuchsia-600 z-[5] text-xl float-right cursor-pointer'></MdFavorite> <br /></> :
-          <><MdFavoriteBorder onClick={() => setFav(true)} className='relative top-8 right-4 text-fuchsia-600 z-[5] text-xl float-right cursor-pointer'></MdFavoriteBorder><br /></>}
+        {fav ? <><button onClick={() => setFav(false)} disabled={!userId || User?.role !== "buyer"} className='relative top-8 right-4 text-fuchsia-600 z-[5] text-xl float-right cursor-pointer'><MdFavorite></MdFavorite></button><br/></> :
+          <><button onClick={handleAddToFav} disabled={!userId || User?.role !== "buyer"} className='relative top-8 right-4 text-fuchsia-600 z-[5] text-xl float-right cursor-pointer'><MdFavoriteBorder  ></MdFavoriteBorder></button><br /></>}
         <BsEye onClick={() => setOpen(true)} className='relative top-8 right-4 z-[5] text-xl float-right cursor-pointer'></BsEye>
         <div
           className={
@@ -103,7 +103,7 @@ const Product = ({ product }) => {
           </div> */}
         </div>
         <p className="mt-1 text-xl font-semibold text-red-800 my-2 ">{product.price}</p>
-        <Link key={product._id} to={`/products/${product._id}`} ><button className="btn btn-primary">View</button></Link>
+        <Link key={product._id} to={`/products/${product._id}`} ><button  className="btn btn-primary">View</button></Link>
       </div>
     </div>
   )
