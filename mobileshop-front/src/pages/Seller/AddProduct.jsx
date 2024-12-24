@@ -23,7 +23,7 @@ const AddProduct = () => {
   
     console.log(productData)
   
-    fetch('http://localhost:5000/products', {
+    fetch('http://localhost:5000https://mobiverse.vercel.app/products', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

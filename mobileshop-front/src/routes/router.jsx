@@ -97,7 +97,7 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/admin_review/:id",
         element: <AdminReview />,
-        loader: ({ params }) => fetch(`http://localhost:5000/pending_applications/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000https://mobiverse.vercel.app/pending_applications/${params.id}`)
       },
       {
         path: "/dashboard/seedetails",

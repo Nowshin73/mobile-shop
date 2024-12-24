@@ -48,7 +48,7 @@ const Register = () => {
               photoURL: photo || "https://i.ibb.co.com/PwHygL1/image.png",
               role: "buyer",
             };
-            fetch(`http://localhost:5000/users`, {
+            fetch(`http://localhost:5000https://mobiverse.vercel.app/users`, {
               method: "POST",
               headers: {
                 "content-type": "application/json",

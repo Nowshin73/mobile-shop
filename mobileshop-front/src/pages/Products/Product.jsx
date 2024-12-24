@@ -30,7 +30,7 @@ const Product = ({ product }) => {
         price: product.price,
       };
   
-      fetch("http://localhost:5000/fav", {
+      fetch("http://localhost:5000https://mobiverse.vercel.app/fav", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

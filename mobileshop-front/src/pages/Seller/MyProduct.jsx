@@ -24,7 +24,7 @@ const MyProduct = () => {
 
     const fetchMyProducts = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/products?userId=${userId}`, {
+        const response = await fetch(`http://localhost:5000https://mobiverse.vercel.app/products?userId=${userId}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ const MyProduct = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:5000/products/${id}`)
+      .delete(`http://localhost:5000https://mobiverse.vercel.app/products/${id}`)
       .then((response) => {
         Swal.fire({
           position: 'center',

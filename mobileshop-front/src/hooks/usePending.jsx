@@ -8,7 +8,7 @@ const usePending = () => {
     const { refetch, data: Pendings = [] } = useQuery({
         queryKey: ['Pendings', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/pending_applications`)
+            const res = await fetch(`http://localhost:5000https://mobiverse.vercel.app/pending_applications`)
             return res.json();
         },
     });

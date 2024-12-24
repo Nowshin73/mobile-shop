@@ -48,7 +48,7 @@ const ProductDetails = () => {
       price: product.price,
     };
 
-    fetch("http://localhost:5000/cart", {
+    fetch("http://localhost:5000https://mobiverse.vercel.app/cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

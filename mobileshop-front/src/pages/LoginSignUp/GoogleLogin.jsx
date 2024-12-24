@@ -42,7 +42,7 @@ const GoogleLogin = () => {
           createdAt: loggedInUser.metadata.creationTime,
         };
 
-        fetch("http://localhost:5000/users", {
+        fetch("http://localhost:5000https://mobiverse.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

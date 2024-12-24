@@ -8,7 +8,7 @@ const useProfile = () => {
     const { refetch, data: Profiles = [] } = useQuery({
         queryKey: ['Profiles', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/profiles`)
+            const res = await fetch(`http://localhost:5000https://mobiverse.vercel.app/profiles`)
             return res.json();
         },
     });
