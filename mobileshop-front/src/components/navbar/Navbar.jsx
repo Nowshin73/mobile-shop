@@ -1,10 +1,14 @@
 import React, { useContext } from "react";
 import ActiveLink from "./ActiveLink";
 import { AuthContext } from "../../providers/AuthProvider";
+import useUser from "../../hooks/useUser";
+import { MdDashboard } from "react-icons/md";
+import { BsCart } from "react-icons/bs";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
-
+  const [User] = useUser();
+  const role = User?.role;
   return (
     <nav className="bg-blue-950 p-4 font-serif">
       <div className="container mx-auto">
@@ -22,21 +26,38 @@ const Navbar = () => {
             <ActiveLink to='/about' className="text-white hover:text-gray-300">
              About
             </ActiveLink>
-            {user ? (
+            {user && User && role ==="buyer" && (
               <>
-                <ActiveLink to='/user/dashboard' className="text-white hover:text-gray-300">
+                <ActiveLink to='/user/dashboard' className="text-white  hover:text-gray-300">
                  Dashboard
                 </ActiveLink>
-                <ActiveLink to='/profile' className="text-white hover:text-gray-300">
-                  Profile
+                <ActiveLink to='/user/dashboard/cart' className="text-white hover:text-gray-300">
+                  <BsCart></BsCart> Cart
                 </ActiveLink>
               </>
-            )
-              :
+            )}
+            
+            {user && User && role ==="seller" && (
+              <>
+                <ActiveLink to='/seller/dashboard' className="text-white hover:text-gray-300">
+                 Dashboard
+                </ActiveLink>
+                
+              </>
+            )}
+            {user && User && role ==="admin" && (
+              <>
+                <ActiveLink to='/admin/dashboard' className="text-white hover:text-gray-300">
+                 Dashboard
+                </ActiveLink>
+                
+              </>
+            )}
+
               <ActiveLink to='/login' className="text-white hover:text-gray-300">
                 Login
               </ActiveLink>
-            }
+            
 
           </div>
         </div>

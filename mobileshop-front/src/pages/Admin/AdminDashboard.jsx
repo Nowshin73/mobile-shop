@@ -1,13 +1,12 @@
 import React from 'react'
 import Sidebar from '../../components/sidebar/Sidebar'
+import { Outlet } from 'react-router-dom'
 
 const AdminDashboard = () => {
   return (
-    <div>
+    <div className='flex'>
       <Sidebar></Sidebar>
-      <div>
-        AdminDashboard
-      </div>
+      <Outlet></Outlet>
     </div>
   )
 }

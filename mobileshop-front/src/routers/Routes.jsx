@@ -19,75 +19,94 @@ import Auth from '../pages/LoginSignUp/Auth'
 import AddProduct from '../pages/Seller/AddProduct'
 import UpdateProduct from '../pages/Seller/UpdateProduct'
 import BuyerHome from '../pages/Buyer/BuyerHome'
+import AdminHome from '../pages/Admin/AdminHome'
+import UserList from '../pages/Admin/UserList'
+import SellerHome from '../pages/Seller/SellerHome'
 
 
 export const router = createBrowserRouter([
     {
-      path: "/",
-      element: <Main></Main>,
-      children: [
-        {
-            path: '/',
-            element: <Home></Home>
-        },
-        {
-            path: '/login',
-            element: <Auth></Auth>
-        },
-       
-        {
-            path: '/products/:id',
-            element: <ProductDetails></ProductDetails>,
-            loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
-        },
-        {
-            path: '/about',
-            element: <About></About>
-        },
-        {
-            path: '/contact',
-            element: <Contact></Contact>
-        },
-        {
-            path: '/product',
-            element: <Product></Product>
-        },
-        {
-            path: '/user/dashboard',
-            element: <BuyerDashboard></BuyerDashboard>,
-            children:[
-                {
-                    path: '/user/dashboard/',
-                    element: <BuyerHome></BuyerHome>
-                },
-                {
-                    path: '/user/dashboard/cart',
-                    element: <Cart></Cart>
-                },
-                {
-                    path: '/user/dashboard/favourites',
-                    element: <Wishlist></Wishlist>
-                },
-            ]
-        },
-        
-        {
-            path: '/admin/dashboard',
-            element: <AdminDashboard></AdminDashboard>
-        },
-        {
-            path: '/seller/dashboard',
-            element: <SellerDashboard></SellerDashboard>
-        },
-        {
-            path: '/seller/product/new',
-            element: <AddProduct></AddProduct>
-        },
-        {
-            path: '/seller/product/update',
-            element: <UpdateProduct></UpdateProduct>
-        }
-        
-    ]
+        path: "/",
+        element: <Main></Main>,
+        children: [
+            {
+                path: '/',
+                element: <Home></Home>
+            },
+            {
+                path: '/login',
+                element: <Auth></Auth>
+            },
+
+            {
+                path: '/products/:id',
+                element: <ProductDetails></ProductDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+            },
+            {
+                path: '/about',
+                element: <About></About>
+            },
+            {
+                path: '/contact',
+                element: <Contact></Contact>
+            },
+            {
+                path: '/product',
+                element: <Product></Product>
+            },
+            {
+                path: '/user/dashboard',
+                element: <BuyerDashboard></BuyerDashboard>,
+                children: [
+                    {
+                        path: '/user/dashboard/',
+                        element: <BuyerHome></BuyerHome>
+                    },
+                    {
+                        path: '/user/dashboard/cart',
+                        element: <Cart></Cart>
+                    },
+                    {
+                        path: '/user/dashboard/favourites',
+                        element: <Wishlist></Wishlist>
+                    },
+                ]
+            },
+
+            {
+                path: '/admin/dashboard',
+                element: <AdminDashboard></AdminDashboard>,
+                children: [
+                    {
+                        path: '/admin/dashboard',
+                        element: <AdminHome></AdminHome>,
+                    },
+                    {
+                        path: '/admin/dashboard/users',
+                        element: <UserList></UserList>,
+                    },
+                ]
+            },
+            {
+                path: '/seller/dashboard',
+                element: <SellerDashboard></SellerDashboard>,
+                children:[
+                    {
+                        path: '/seller/dashboard',
+                        element: <SellerHome></SellerHome>
+                    },
+                    {
+                        path: '/seller/dashboard/product/new',
+                        element: <AddProduct></AddProduct>
+                    },
+                    {
+                        path: '/seller/dashboard/product/update',
+                        element: <UpdateProduct></UpdateProduct>
+                    },
+                ]
+            },
+
+        ]
     }
 ]);

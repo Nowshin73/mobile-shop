@@ -121,7 +121,31 @@ app.get('/users', async (req, res) => {
   const result = await userCollection.find().toArray();
   res.send(result);
 });
+// delete user --admin
+app.delete('/users/:id', async (req, res) => {
+  const id = req.params.id;
+  const query = { _id: new ObjectId(id) };
+  const result = await usersCollection.deleteOne(query);
+  res.send(result);
+})
 
+// Update user role -- admin
+app.patch('/users/:id', async (req, res) => {
+  const id = req.params.id;
+  const filter = { _id: new ObjectId(id) };
+  const updatedUser = { $set: { role: req.body.role } };
+
+  try {
+    const result = await userCollection.updateOne(filter, updatedUser);
+    if (result.modifiedCount > 0) {
+      res.status(200).send({ message: 'User role updated successfully.' });
+    } else {
+      res.status(404).send({ message: 'User not found or no changes made.' });
+    }
+  } catch (error) {
+    res.status(500).send({ message: 'Error updating user role', error });
+  }
+});
 app.post('/users', async (req, res) => {
   const user = req.body;
   const query = { email: user.email }

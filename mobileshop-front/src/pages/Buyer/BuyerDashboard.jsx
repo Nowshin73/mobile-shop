@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom'
 const BuyerDashboard = () => {
   return (
     
-    <div>
+    <div className='flex'>
     <Sidebar></Sidebar>
     <Outlet></Outlet>
   </div>

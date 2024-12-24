@@ -53,10 +53,10 @@ const photoURL = User?.photoURL;
           </Link> */}
           {user && role ==="admin" &&(
             <>
-              <Link to="/dashboard/admin" className="block mb-4">
+              <Link to="/admin/dashboard" className="block mb-4">
                 Admin Home
               </Link>
-              <Link to="/dashboard/admin/users" className="block mb-4">
+              <Link to="/admin/dashboard/users" className="block mb-4">
                 Users
               </Link>
               
