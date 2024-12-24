@@ -18,6 +18,7 @@ import Register from '../pages/LoginSignUp/Register'
 import Auth from '../pages/LoginSignUp/Auth'
 import AddProduct from '../pages/Seller/AddProduct'
 import UpdateProduct from '../pages/Seller/UpdateProduct'
+import BuyerHome from '../pages/Buyer/BuyerHome'
 
 
 export const router = createBrowserRouter([
@@ -53,16 +54,23 @@ export const router = createBrowserRouter([
         },
         {
             path: '/user/dashboard',
-            element: <BuyerDashboard></BuyerDashboard>
+            element: <BuyerDashboard></BuyerDashboard>,
+            children:[
+                {
+                    path: '/user/dashboard/',
+                    element: <BuyerHome></BuyerHome>
+                },
+                {
+                    path: '/user/dashboard/cart',
+                    element: <Cart></Cart>
+                },
+                {
+                    path: '/user/dashboard/favourites',
+                    element: <Wishlist></Wishlist>
+                },
+            ]
         },
-        {
-            path: '/cart',
-            element: <Cart></Cart>
-        },
-        {
-            path: '/favourites',
-            element: <Wishlist></Wishlist>
-        },
+        
         {
             path: '/admin/dashboard',
             element: <AdminDashboard></AdminDashboard>

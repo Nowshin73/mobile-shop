@@ -34,7 +34,7 @@ const GoogleLogin = () => {
           email: loggedInUser.email,
           name: loggedInUser.displayName,
           photo: loggedInUser.photoURL,
-          isAdmin: "no",
+          role: "buyer",
           createdAt: loggedInUser.metadata.creationTime,
         };
 

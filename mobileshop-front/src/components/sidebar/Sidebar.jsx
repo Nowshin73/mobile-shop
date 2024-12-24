@@ -20,7 +20,7 @@ const Sidebar = () => {
 
   const [User] = useUser();
 
- const isAdmin = User?.isAdmin;
+ const role = User?.role;
 
 const photoURL = User?.photoURL;
  
@@ -51,7 +51,7 @@ const photoURL = User?.photoURL;
           {/* <Link to="/" className="block mb-4">
             Homepage
           </Link> */}
-          {user && isAdmin =="yes" &&(
+          {user && role ==="admin" &&(
             <>
               <Link to="/dashboard/admin" className="block mb-4">
                 Admin Home
@@ -59,29 +59,34 @@ const photoURL = User?.photoURL;
               <Link to="/dashboard/admin/users" className="block mb-4">
                 Users
               </Link>
-              <Link to="/dashboard/pending_application" className="block mb-4">
-                Pending Correction Applications
-              </Link>
-             
-              <Link to="/dashboard/reviewed_application" className="block mb-4">
-                Reviewed Correction Applications
-              </Link>
-              <Link to="/dashboard/approved_application" className="block mb-4">
-                Approved Correction Applications
-              </Link>
+              
             </>
           )} 
-          {user && (!isAdmin || isAdmin== "no") &&(
+          {user && role === "buyer" &&(
             <>
               <Link to='/user/dashboard' className="block mb-4">
                 Dashboard
               </Link>
 
-              <Link to="/cart" className="block mb-4">
+              <Link to="/user/dashboard/cart" className="block mb-4">
                 Cart
               </Link>
-              <Link to="/favourites" className="block mb-4">
+              <Link to="/user/dashboard/favourites" className="block mb-4">
                 Favourite Products
+              </Link>
+            </>
+          )}
+          {user && role === "seller" &&(
+            <>
+              <Link to='/seller/dashboard' className="block mb-4">
+                Dashboard
+              </Link>
+
+              <Link to="/seller/dashboard/product/new" className="block mb-4">
+                Add Product
+              </Link>
+              <Link to="/seller/dashboard/my_products" className="block mb-4">
+                My Products
               </Link>
             </>
           )}
