@@ -14,10 +14,10 @@ const Register = () => {
   const [User] = useUser();
   const role = User?.role;
 
-  const validatePassword = (password) => {
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return regex.test(password);
-  };
+  // const validatePassword = (password) => {
+  //   const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  //   return regex.test(password);
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,12 +29,12 @@ const Register = () => {
 
     setError("");
 
-    if (!validatePassword(password)) {
-      setError(
-        "Password must be at least 8 characters long, include uppercase and lowercase letters, a number, and a special character."
-      );
-      return;
-    }
+    // if (!validatePassword(password)) {
+    //   setError(
+    //     "Password must be at least 8 characters long, include uppercase and lowercase letters, a number, and a special character."
+    //   );
+    //   return;
+    // }
 
     createUser(email, password)
       .then((result) => {
@@ -84,8 +84,6 @@ const Register = () => {
         </div>
         <form
           onSubmit={handleSubmit}
-          noValidate=""
-          action=""
           className="space-y-6 ng-untouched ng-pristine ng-valid"
         >
           <div className="grid grid-cols-1 gap-4">
