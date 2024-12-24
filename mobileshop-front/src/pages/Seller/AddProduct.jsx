@@ -1,6 +1,9 @@
 import React from 'react'
+import useUser from '../../hooks/useUser';
 
 const AddProduct = () => {
+  const [User] = useUser();
+  const userId=User?._id;
   const addProduct = event => {
     event.preventDefault();
     const form = event.target;
@@ -8,13 +11,18 @@ const AddProduct = () => {
     const productData = {
       name: form.name.value,
       description: form.description.value,
-      price: form.price.value,
+      price: parseFloat(form.price.value),
+      stock: parseInt(form.stock.value),
       category: form.category.value,
       brand: form.brand.value,
-      images: form.images.value
+      images: form.images.value,
+      userId,
+      ratings:0,
+      numOfReviews:0
     };
-
-
+  
+    console.log(productData)
+  
     fetch('http://localhost:5000/products', {
       method: 'POST',
       headers: {
@@ -32,7 +40,7 @@ const AddProduct = () => {
             icon: 'success',
             confirmButtonText: 'Cool'
           });
-          navigate("/seller/dashboard");
+          navigate("/seller/dashboard/product/new");
         }
 
       })
@@ -108,6 +116,8 @@ const AddProduct = () => {
                 type="number"
                 placeholder='Product Stock '
                 required
+                min={1}
+                max={10000}
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
               />
             </div>
@@ -137,9 +147,9 @@ const AddProduct = () => {
                 name="brand"
                 className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
               >
-                <option>Samsumg</option>
-                <option>Apple</option>
-                <option>OPPO</option>
+                <option value={"Samsung"}>Samsumg</option>
+                <option value={"Apple"}>Apple</option>
+                <option value={"OPPO"}>OPPO</option>
               </select>
             </div>
           </div>
@@ -153,8 +163,9 @@ const AddProduct = () => {
                 name="category"
                 className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
               >
-                <option>Android</option>
-                <option>iPhone</option>
+                <option value={"Android"}>Android</option>
+                <option value={"iPhone"}>iPhone</option>
+                <option value={"CellPhone"}>CellPhone</option>
               </select>
             </div>
           </div>

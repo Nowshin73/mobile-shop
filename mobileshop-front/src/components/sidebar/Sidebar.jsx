@@ -28,7 +28,7 @@ const photoURL = User?.photoURL;
 
 
   return (
-    <div style={{ background: "linear-gradient(90deg, #7209b7 0%, #3a0ca3 100%)"}} className=" h-full text-white">
+    <div style={{ background: "linear-gradient(90deg, #7209b7 0%, #3a0ca3 100%)"}} className=" h-auto text-white">
       <div className="grid   md:flex px-8  md:flex-col justify-between  md:justify-start text-white  pt-10">
         <div className="hidden lg:flex md:flex-wrap lg:flex-wrap lg:items-center lg:gap-4 pb-5">
          { user && User?  <img

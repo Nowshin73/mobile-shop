@@ -53,11 +53,11 @@ const Navbar = () => {
                 
               </>
             )}
-
-              <ActiveLink to='/login' className="text-white hover:text-gray-300">
-                Login
-              </ActiveLink>
-            
+          { !user && !User &&
+            <ActiveLink to='/login' className="text-white hover:text-gray-300">
+              Login
+            </ActiveLink>
+          }
 
           </div>
         </div>
