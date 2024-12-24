@@ -16,9 +16,9 @@ const Product = ({ product }) => {
     isHalf: true
   }
   return (
-    <div className='product-card group card bg-base-100 w-80 shadow-xl mx-10' key={product._id}>
+    <div className='group card bg-base-100 p-1 w-[300px] h-[500px] shadow-xl ' key={product._id}>
 
-      <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg xl:aspect-h-8 xl:aspect-w-7">
+      <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg xl:aspect-h-8 xl:aspect-w-7">
         {fav ? <><MdFavorite onClick={() => setFav(false)} className='relative top-8 right-4 text-fuchsia-600 z-[5] text-xl float-right cursor-pointer'></MdFavorite> <br /></> :
           <><MdFavoriteBorder onClick={() => setFav(true)} className='relative top-8 right-4 text-fuchsia-600 z-[5] text-xl float-right cursor-pointer'></MdFavoriteBorder><br /></>}
         <BsEye onClick={() => setOpen(true)} className='relative top-8 right-4 z-[5] text-xl float-right cursor-pointer'></BsEye>
@@ -26,7 +26,7 @@ const Product = ({ product }) => {
           className={
             open
               ? "fixed top-0 left-0 w-full h-full flex justify-center items-center z-30 bg-[#00000082]"
-              : ""
+              : "flex justify-center items-center"
           }
         >
           <img
@@ -35,7 +35,7 @@ const Product = ({ product }) => {
             className={
               open
                 ? "fixed w-[90vw] h-[50vh] md:w-[80vh] md:h-[50vh] z-40 object-contain"
-                : "h-full w-full relative rounded -top-5 object-cover object-center group-hover:opacity-75"
+                : "w-[250px] h-[250px] relative rounded -top-5 object-cover object-center group-hover:opacity-75"
             }
           />
           <MdClose
@@ -52,7 +52,7 @@ const Product = ({ product }) => {
       <div className='relative -top-5 card-body'>
 
         <div className="flex flex-col justify-start items-center">
-          <h2 className="card-title">
+          <h2 className="font-semibold">
           {product.name}
           </h2>
 
@@ -60,8 +60,8 @@ const Product = ({ product }) => {
             <ReactStars {...options} />
           </div> */}
         </div>
-        <p className="mt-1 text-lg font-medium text-gray-900 mb-3">${product.price}</p>
-        <Link key={product._id} to={`/product/${product._id}`} ><button className="btn btn-primary">View</button></Link>
+        <p className="mt-1 text-sm font-medium text-gray-900 mb-3">${product.price}</p>
+        <Link key={product._id} to={`/products/${product._id}`} ><button className="btn btn-primary">View</button></Link>
       </div>
     </div>
   )
