@@ -10,7 +10,14 @@ const UserList = () => {
     console.log(updatedInfo)
     axios.patch(`http://localhost:5000/users/${userId}`, updatedInfo)
       .then(response => {
-        alert('User role updated successfully', response.data);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: `User role updated to ${userRole} successfully`,
+          showConfirmButton: true,
+          timer: 1500,
+        });
+        //alert('User role updated successfully', response.data);
         // Update the state after successful update
         setUsers((prevUsers) =>
           prevUsers.map((user) =>
@@ -19,7 +26,7 @@ const UserList = () => {
         );
       })
       .catch(error => {
-        console.error('Error updating user role:', error);
+        Swal.fire('Error updating user role:', error);
       });
   };
 
@@ -44,7 +51,7 @@ const UserList = () => {
         setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
       })
       .catch((error) => {
-        console.error('Error deleting user:', error);
+        Swal.fire('Error deleting user:', error);
       });
   };
 
