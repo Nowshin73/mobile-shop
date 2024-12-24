@@ -74,7 +74,7 @@ const Products = () => {
   };
 
   return (
-    <div className="p-6 lg:p-12 bg-gray-100 min-h-screen">
+    <div className="p-6 lg:p-12  max-w-[1200px] mx-auto min-h-screen">
       <h2 className="text-3xl font-bold text-center mb-6">Our Products</h2>
 
       {/* Search Bar */}
@@ -125,7 +125,7 @@ const Products = () => {
       </div>
 
       {/* Product Grid */}
-      <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:gap-10 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-x-6 justify-center items-center gap-y-10 lg:gap-10 sm:grid-cols-2 lg:grid-cols-3">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <Product key={product._id} product={product} />

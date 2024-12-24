@@ -7,7 +7,7 @@ const Banner = () => {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }} className="hero min-h-screen">
-            <div className="hero-content text-center">
+            <div className="hero-content text-center flex flex-col md:flex-row">
                 <div><img src="https://i.ibb.co.com/VVdK6FG/image.png" alt="" /></div>
                 <div className="w-2/3">
                     <h1 style={{textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)"}} className="text-5xl text-white font-bold">Your Gateway to the Latest Smartphones & Accessories!</h1>
