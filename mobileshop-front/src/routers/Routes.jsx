@@ -23,6 +23,7 @@ import AdminHome from '../pages/Admin/AdminHome'
 import UserList from '../pages/Admin/UserList'
 import SellerHome from '../pages/Seller/SellerHome'
 import MyProduct from '../pages/Seller/MyProduct'
+import Products from '../pages/Products/Products'
 
 
 export const router = createBrowserRouter([
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Auth></Auth>
+            },
+            {
+                path: '/products',
+                element: <Products></Products>
             },
 
             {
