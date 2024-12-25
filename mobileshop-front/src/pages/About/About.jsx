@@ -2,14 +2,14 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="bg-gray-100 py-10">
+    <div className="bg-gray-100 py-10 md:h-[100vh]">
       <div className="container mx-auto px-6 sm:px-10">
         <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">About Us</h1>
-        <p className="text-center text-gray-600 text-lg leading-relaxed mb-8">
+        <p className="text-center md:mb-28 text-gray-600 text-lg leading-relaxed mb-8">
           Welcome to <span className="font-semibold text-indigo-600">MobiVerse</span>, your one-stop shop for the latest and greatest in mobile technology. We pride ourselves on offering a diverse range of smartphones, accessories, and gadgets to cater to all your mobile needs.
         </p>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6  sm:grid-cols-2 lg:grid-cols-3">
           <div className="bg-white rounded-lg shadow-lg p-6 text-center">
             <h2 className="text-2xl font-semibold text-indigo-600 mb-4">Our Mission</h2>
             <p className="text-gray-600 leading-relaxed">
@@ -32,19 +32,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="mt-10 text-center">
-          <h3 className="text-3xl font-semibold text-gray-800 mb-4">Contact Us</h3>
-          <p className="text-gray-600 text-lg mb-2">Email: <a href="mailto:support@mobiverse.com" className="text-indigo-600 hover:underline">support@mobiverse.com</a></p>
-          <p className="text-gray-600 text-lg">Phone: <a href="tel:+1234567890" className="text-indigo-600 hover:underline">+1 (234) 567-890</a></p>
-        </div>
-
-        <div className="mt-10 flex justify-center">
-          <img
-            src="https://via.placeholder.com/500x300"
-            alt="About Us"
-            className="rounded-lg shadow-lg w-full sm:w-3/4 lg:w-1/2"
-          />
-        </div>
+      
       </div>
     </div>
   );

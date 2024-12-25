@@ -111,8 +111,9 @@ export const router = createBrowserRouter([
                         element: <AddProduct></AddProduct>
                     },
                     {
-                        path: '/seller/dashboard/product/update',
-                        element: <UpdateProduct></UpdateProduct>
+                        path: '/seller/dashboard/product/update/:id',
+                        element: <UpdateProduct></UpdateProduct>,
+                        loader: ({ params }) => fetch(`https://mobiverse.vercel.app/products/${params.id}`)
                     },
                 ]
             },

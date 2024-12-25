@@ -24,7 +24,7 @@ const MyProduct = () => {
 
     const fetchMyProducts = async () => {
       try {
-        const response = await fetch(`https://mobiverse.vercel.app/products?userId=${userId}`, {
+        const response = await fetch(`https://mobiverse.vercel.app/products`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -40,7 +40,13 @@ const MyProduct = () => {
 
         }
         const data = await response.json();
-        setMyProducts(data);
+        if (userId) {
+          const filtered = data.filter((product) => product.userId === userId);
+          setMyProducts(filtered);
+        } else {
+          setMyProducts([]);
+        }
+        //setMyProducts(data);
       } catch (error) {
         Swal.fire({
           title: "Error!",
@@ -106,10 +112,14 @@ const MyProduct = () => {
                         <div className="flex flex-1 items-end justify-between text-sm">
                           <p className="text-gray-500">Qty {product.stock}</p>
 
-                          <div className="flex">
-                            <button onClick={() => handleDelete(product._id)} type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
+                          <div className="flex gap-2">
+                            <button onClick={() => handleDelete(product._id)} type="button" className="btn btn-error text-white">
                               Remove
                             </button>
+                           <Link to={`/seller/dashboard/product/update/${product._id}`}> <button type="button" className="btn btn-info text-white">
+                              Update
+                            </button>
+                            </Link>
                           </div>
                         </div>
                       </div>

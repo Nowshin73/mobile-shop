@@ -102,7 +102,7 @@ const Product = ({ product }) => {
             <ReactStars {...options} />
           </div> */}
         </div>
-        <p className="mt-1 text-xl font-semibold text-red-800 my-2 ">{product.price}</p>
+        <p className="mt-1 text-xl font-semibold text-red-800 my-2 ">{product.price}৳</p>
         <Link key={product._id} to={`/products/${product._id}`} ><button  className="btn btn-primary">View</button></Link>
       </div>
     </div>

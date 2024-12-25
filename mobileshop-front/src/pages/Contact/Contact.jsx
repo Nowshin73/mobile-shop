@@ -2,12 +2,14 @@ import React from "react";
 
 const Contact = () => {
   return (
-    <div className="bg-gray-100 py-12">
+    <div style={{backgroundImage:'url("https://i.ibb.co.com/xhq5Ftc/image.png")',
+                  backgroundRepeat:'no-repeat', backgroundSize:'cover' }}
+          className="bg-gray-100 py-12">
       <div className="container w-2/3 mx-auto px-6 lg:px-20">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+        <h2 style={{textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)"}} className="text-3xl font-bold text-center text-white mb-6">
           Contact Us
         </h2>
-        <p className="text-center text-gray-600 mb-12">
+        <p style={{textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)"}} className="text-center text-white mb-12">
           Have questions or need support? Reach out to us, and we’ll get back to you shortly.
         </p>
 
@@ -75,26 +77,6 @@ const Contact = () => {
           </form>
         </div>
 
-        <div className="mt-12 text-center">
-          <p className="text-gray-600">
-            Or reach us directly at{" "}
-            <a
-              href="mailto:support@mobiverse.com"
-              className="text-indigo-600 underline hover:text-indigo-700"
-            >
-              support@mobiverse.com
-            </a>
-          </p>
-          <p className="text-gray-600 mt-2">
-            Call us at{" "}
-            <a
-              href="tel:+123456789"
-              className="text-indigo-600 underline hover:text-indigo-700"
-            >
-              +123-456-789
-            </a>
-          </p>
-        </div>
       </div>
     </div>
   );

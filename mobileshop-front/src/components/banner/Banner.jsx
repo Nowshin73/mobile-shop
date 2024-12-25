@@ -15,7 +15,7 @@ const Banner = () => {
                     Discover a world of cutting-edge technology at unbeatable prices. From the latest smartphones to must-have accessories, 
                     we've got everything to keep you connected and ahead of the curve. Shop now and experience excellence!
                     </p>
-                    <button className="btn btn-primary">Get Started</button>
+                    <button className="btn btn-primary text-white">Get Started</button>
                 </div>
             </div>
         </div>

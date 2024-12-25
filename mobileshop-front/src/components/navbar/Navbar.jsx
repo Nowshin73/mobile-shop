@@ -10,7 +10,7 @@ const Navbar = () => {
   const [User] = useUser();
   const role = User?.role;
   return (
-    <nav className="bg-blue-950 p-4 font-serif">
+    <nav className="bg-indigo-800 p-4 font-serif shadow-xl">
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
           <div>

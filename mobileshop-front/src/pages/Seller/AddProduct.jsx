@@ -1,5 +1,6 @@
 import React from 'react'
 import useUser from '../../hooks/useUser';
+import Swal from 'sweetalert2';
 
 const AddProduct = () => {
   const [User] = useUser();
@@ -150,6 +151,7 @@ const AddProduct = () => {
                 <option value={"Samsung"}>Samsumg</option>
                 <option value={"Apple"}>Apple</option>
                 <option value={"OPPO"}>OPPO</option>
+                <option value={"Nokia"}>Nokia</option>
               </select>
             </div>
           </div>

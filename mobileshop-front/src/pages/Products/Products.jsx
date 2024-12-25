@@ -46,24 +46,23 @@ const Products = () => {
   const filterAndSortProducts = (query, category, brand, order) => {
     let filtered = products;
 
-    // Filter by search query
+    
     if (query) {
       filtered = filtered.filter((product) =>
         product.name.toLowerCase().includes(query)
       );
     }
 
-    // Filter by category
+ 
     if (category !== "All") {
       filtered = filtered.filter((product) => product.category === category);
     }
 
-    // Filter by brand
+
     if (brand !== "All") {
       filtered = filtered.filter((product) => product.brand === brand);
     }
 
-    // Sort by price
     filtered = filtered.sort((a, b) =>
       order === "ascending"
         ? a.price - b.price
@@ -74,10 +73,10 @@ const Products = () => {
   };
 
   return (
-    <div className="p-6 lg:p-12  max-w-[1200px] mx-auto min-h-screen">
+    <div className="p-6 lg:p-12 min-h-screen bg-gray-100">
       <h2 className="text-3xl font-bold text-center mb-6">Our Products</h2>
-
-      {/* Search Bar */}
+       <div className="products-container max-w-[1200px] mx-auto ">
+              {/* Search Bar */}
       <div className="mb-6 flex flex-col justify-center items-center">
         <input
           type="text"
@@ -136,6 +135,7 @@ const Products = () => {
           </p>
         )}
       </div>
+       </div>
     </div>
   );
 };

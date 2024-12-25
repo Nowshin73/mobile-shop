@@ -74,7 +74,7 @@ app.delete('/products/:id', async (req, res) => {
   res.send(result);
 })
 
-//profiles update
+//product update
 app.put('/products/:id', async (req, res) => {
   const id = req.params.id;
   const filter = { _id: new ObjectId(id) };
