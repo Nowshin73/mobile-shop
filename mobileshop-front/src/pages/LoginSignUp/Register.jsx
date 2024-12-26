@@ -5,9 +5,10 @@ import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import GoogleLogin from "../../pages/LoginSignUp/GoogleLogin";
 import useUser from "../../hooks/useUser";
-
+import { useForm } from 'react-hook-form';
 const Register = () => {
   const [show, setShow] = useState(true);
+  const { register, handleSubmit, reset, formState: { errors }, watch } = useForm();
   const [error, setError] = useState("");
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -19,13 +20,13 @@ const Register = () => {
   //   return regex.test(password);
   // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const password = form.password.value;
-    const photo = form.photURL.value;
+  const onSubmit = (data) => {
+   // e.preventDefault();
+    // const form = e.target;
+    // const name = form.name.value;
+    // const email = form.email.value;
+    // const password = form.password.value;
+    // const photo = form.photURL.value;
 
     setError("");
 
@@ -36,16 +37,16 @@ const Register = () => {
     //   return;
     // }
 
-    createUser(email, password)
+    createUser(data.email, data.password)
       .then((result) => {
         console.log(result.user);
 
-        updateUserProfile(name, photo)
+        updateUserProfile(data.name, data.photoURL)
           .then(() => {
             const savedUser = {
-              email: result.user.email,
-              name,
-              photo: photo || "https://i.ibb.co.com/PwHygL1/image.png",
+              email: data.email,
+              name: data.name,
+              photo: data.photoURL || "https://i.ibb.co.com/PwHygL1/image.png",
               role: "buyer",
               createdAt: new Date()
             };
@@ -67,13 +68,14 @@ const Register = () => {
           icon: "success",
           confirmButtonText: "Ok",
         });
+        reset();
         navigate("/user/dashboard");
       })
       .catch((error) => {
         setError(error.message);
       });
 
-    form.reset();
+    
   };
 
   return (
@@ -84,7 +86,7 @@ const Register = () => {
           <p className="text-sm text-gray-400">Welcome to MobiVerse App</p>
         </div>
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           className="space-y-6 ng-untouched ng-pristine ng-valid"
         >
           <div className="grid grid-cols-1 gap-4">
@@ -97,10 +99,11 @@ const Register = () => {
               <input
                 type="name"
                 name="name"
-                required
+                {...register('name', { required: true })}
                 placeholder="type your name"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#4361ee] bg-gray-200 text-gray-900"
               />
+              {errors.name && <span className="text-red-500">Name is required</span>}
             </div>
             <div>
               <div className="flex justify-between">
@@ -111,10 +114,12 @@ const Register = () => {
               <input
                 type="email"
                 name="email"
-                required
+                {...register('email', { required: true })}
+                
                 placeholder="type email address"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#4361ee] bg-gray-200 text-gray-900"
               />
+              {errors.email && <span className="text-red-500">Email is required</span>}
             </div>
 
             <div className="relative">
@@ -126,7 +131,11 @@ const Register = () => {
               <input
                 type={show ? "password" : "text"}
                 name="password"
-                required
+                {...register("password", {
+                  required: true,
+                  minLength: 8,
+                  pattern: /(?=.*[A-Z])(?=.*[!@#$%^&*])/
+                })}
                 placeholder="*******"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#4361ee] bg-gray-200 text-gray-900"
               />
@@ -136,6 +145,19 @@ const Register = () => {
               >
                 {show ? <FaEyeSlash /> : <FaEye />}
               </span>
+              <div>
+              {errors.password?.type === 'required' && (
+                <span className="text-red-500">Password is required</span>
+              )}
+              {errors.password?.type === 'minLength' && (
+                <span className="text-red-500">Password must be at least 6 characters</span>
+              )}
+              {errors.password?.type === 'pattern' && (
+                <span className="text-red-500">
+                  Password must contain at least one capital letter and one special character
+                </span>
+              )}
+              </div>
             </div>
             <div className="relative">
               <div className="flex justify-between">
@@ -146,6 +168,7 @@ const Register = () => {
               <input
                 type="url"
                 name="photURL"
+                {...register('photoURL')} 
                 placeholder="url"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#4361ee] bg-gray-200 text-gray-900"
               />
