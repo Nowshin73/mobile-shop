@@ -40,7 +40,13 @@ const Wishlist = () => {
 
         }
         const data = await response.json();
-        setMyFavs(data);
+        if (userId) {
+          const filtered = data.filter((product) => product.userId === userId);
+          setMyFavs(filtered);
+        } else {
+          setMyFavs([]);
+        }
+       
       } catch (error) {
         Swal.fire({
           title: "Error!",
@@ -78,8 +84,9 @@ const Wishlist = () => {
 
 
   return (
-    <div className="flex h-full w-[60%] flex-col justify-center  overflow-y-scroll bg-white shadow-xl">
-      {myFavs ? (
+    <div>
+    {myFavs.length !==0 ? (
+        <div className="flex md:w-[70vw] md:h-[100vh] flex-col justify-center  overflow-y-scroll bg-white shadow-xl">
         <div >
           <div className=" overflow-y-auto px-4 py-6 sm:px-6">
 
@@ -120,8 +127,9 @@ const Wishlist = () => {
               </div>
             </div>
           </div>
+        </div>
         </div>)
-        : <div className='flex flex-col justify-center items-center'> <p>You have no product.</p></div>
+        : <div className='flex flex-col text-7xl text-violet-900 justify-center items-center md:w-[70vw] md:h-[100vh]'> <p>No Favourite Added</p></div>
       }
     </div>
 

@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 const AddProduct = () => {
   const [User] = useUser();
   const userId=User?._id;
+  console.log(userId)
   const addProduct = event => {
     event.preventDefault();
     const form = event.target;

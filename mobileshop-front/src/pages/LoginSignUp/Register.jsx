@@ -44,9 +44,10 @@ const Register = () => {
           .then(() => {
             const savedUser = {
               email: result.user.email,
-              displayName: name,
-              photoURL: photo || "https://i.ibb.co.com/PwHygL1/image.png",
+              name,
+              photo: photo || "https://i.ibb.co.com/PwHygL1/image.png",
               role: "buyer",
+              createdAt: new Date()
             };
             fetch(`https://mobiverse.vercel.app/users`, {
               method: "POST",

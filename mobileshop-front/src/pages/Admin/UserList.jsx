@@ -4,9 +4,9 @@ import Swal from 'sweetalert2';
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
-  const [userRole, setUserRole] = useState([]);
-  const handleRole = (userId, userRole) => {
-    const updatedInfo = { role: userRole};
+  const [userRole, setUserRole] = useState("");
+  const handleRole = (userId) => {
+    const updatedInfo = { role: userRole };
     console.log(updatedInfo)
     axios.patch(`https://mobiverse.vercel.app/users/${userId}`, updatedInfo)
       .then(response => {
@@ -21,7 +21,7 @@ const UserList = () => {
         // Update the state after successful update
         setUsers((prevUsers) =>
           prevUsers.map((user) =>
-            user._id === userId ? { ...user, isAdmin: updatedInfo } : user
+            user._id === userId ? { ...user, role: userRole } : user
           )
         );
       })
@@ -90,14 +90,18 @@ const UserList = () => {
                   <td className='border-x'><div className='action-buttons flex gap-1'>
                     <select
                       name="role"
-                      onChange={(e)=>setUserRole(e.target.value)}
-                     
-                      className="bg-[#4361ee] px-4 py-2 lg:rounded-md text-white font-semibold hover:bg-[#2a3d94]">
-                      <option value={"buyer"}>Buyer</option>
-                       <option value={"seller"}>Seller</option>
-                       <option value={"admin"}>Admin</option>
+                      // Bind the select value to the state
+                      onChange={(e) => setUserRole(e.target.value)} // Update the state on change
+                      className="bg-[#4361ee] px-4 py-2 lg:rounded-md text-white font-semibold hover:bg-[#2a3d94]"
+                    >
+                      <option value="" disabled>
+                        Select Role
+                      </option>
+                      <option value="buyer">Buyer</option>
+                      <option value="seller">Seller</option>
+                      <option value="admin">Admin</option>
                     </select>
-                    <button  onClick={() => handleRole(p._id, userRole)}  className=" btn btn-success text-white ">
+                    <button onClick={() => handleRole(p._id,userRole)} className=" btn btn-success text-white ">
                       Update
                     </button>
                     <button onClick={() => handleDelete(p._id)} className="bg-red-700 px-4 py-2 lg:rounded-md text-white font-semibold hover:bg-red-900">

@@ -40,7 +40,8 @@ app.get('/products/:id', async (req, res) => {
   const options = {
     // Include only the `title` and `imdb` fields in the returned document
     projection: {
-      name: 1, description: 1, price: 1, category: 1, numofReviews: 1, ratings: 1, images: 1, reviews: 1, brand: 1
+      name: 1, description: 1, price: 1, category: 1, numOfReviews: 1, ratings: 1, images: 1, reviews: 1, brand: 1, stock:1,
+      userId: 1
     },
   };
   const result = await productsCollection.findOne(query, options);
@@ -153,7 +154,7 @@ app.get('/users/:id', async (req, res) => {
   const options = {
     // Include only the `title` and `imdb` fields in the returned document
     projection: {
-      _id: 1, email: 1, name: 1, photo: 1, createdAt: 1,
+      _id: 1, email: 1, name: 1, photo: 1, createdAt: 1, role:1
     },
   };
   const result = await userCollection.findOne(query, options);
