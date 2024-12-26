@@ -82,7 +82,6 @@ app.put('/products/:id', async (req, res) => {
   const updatedProduct = req.body;
   const result = await productsCollection.replaceOne(filter,updatedProduct );
   res.send(result);
- 
 })
 
 app.post('/cart', async (req, res) => {
@@ -121,6 +120,7 @@ app.post('/fav', async (req, res) => {
   const result = await favCollection.insertOne(fav);
   res.send(result);
 });
+
 
 app.get('/fav', async (req, res) => {
   const result = await favCollection.find().toArray();
@@ -161,6 +161,14 @@ app.get('/users/:id', async (req, res) => {
   res.send(result);
 })
 
+//users update
+app.put('/users/:id', async (req, res) => {
+  const id = req.params.id;
+  const filter = { _id: new ObjectId(id) };
+  const updatedUser= req.body;
+  const result = await userCollection.replaceOne(filter,updatedUser );
+  res.send(result);
+})
 // users related apis
 // app.get('/users', verifyJWT, verifyAdmin, async (req, res) => {
 //   const result = await usersCollection.find().toArray();

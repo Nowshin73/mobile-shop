@@ -13,6 +13,7 @@ const Cart = () => {
   const userId = User?._id; // User ID
   //const [cartProducts, setCartProducts] = useState([]);
   const [mycart, setMyCart] = useState([]);
+  const [order,setOrder] =useState([]);
   const [loading, setLoading] = useState(true);
   // const [cartIems, setCartItems] = useState([]);
 
@@ -22,6 +23,11 @@ const Cart = () => {
       setLoading(false);
       return;
     }
+    
+   const placeOrder = async () =>{
+
+   }
+
 
     const fetchCartProducts = async () => {
       try {

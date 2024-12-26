@@ -13,21 +13,35 @@ import useUser from '../../hooks/useUser';
 
 const ProductDetails = () => {
   const product = useLoaderData();
+  //const stock = product.stock;
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [User] = useUser();
   const userId = User?._id;
-  const handleIncreaseQuantity = () => {
-    if (quantity < product.Stock) {
-      setQuantity(prev => prev + 1);
+   // Handlers for increasing and decreasing quantity
+   const handleIncrease = () => {
+    if (quantity < product.stock) {
+      setQuantity(prevQuantity => Number(prevQuantity) + 1);
+      console.log(`Increased: Quantity is now ${quantity + 1}, Stock is ${product.stock}`);
     }
   };
 
-  const handleDecreaseQuantity = () => {
+  const handleDecrease = () => {
     if (quantity > 1) {
-      setQuantity(prev => prev - 1);
+      setQuantity(prevQuantity => Number(prevQuantity) - 1);
+      console.log(`Decreased: Quantity is now ${quantity - 1}, Stock is ${product.stock}`);
     }
   };
+
+  // const handleIncreaseQuantity = () => {
+  //   setQuantity((prev) => (prev < product.stock ? prev + 1 : prev));
+  // };
+
+  // const handleDecreaseQuantity = () => {
+  //   setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  // };
+
+
   const handleAddToCart = () => {
     // if (quantity > product.stock) {
     //   Swal.fire({
@@ -41,11 +55,12 @@ const ProductDetails = () => {
 
     const cartItem = {
       userId: userId,
+      sellerId:product.userId,
       productId: product._id,
       name: product.name,
       quantity,
-      image:product.images,
-      price: product.price,
+      image: product.images,
+      price: product.price*quantity,
     };
 
     fetch("https://mobiverse.vercel.app/cart", {
@@ -120,34 +135,31 @@ const ProductDetails = () => {
               <div className="add-cart flex items-center gap-5">
                 <div className="quantity flex items-center gap-2">
                   <button
-                    onClick={handleDecreaseQuantity} 
-                    
-                    // onClick={() => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))}
+                    onClick={handleDecrease} disabled={quantity === 1}
                     className='px-4 text-2xl border bg-slate-500 hover:bg-slate-700 text-white'
-                    disabled={!userId || User?.role !== "buyer"}
                   >
                     -
                   </button>
                   <input
+                    type="number"
                     value={quantity}
-                    type='number'
                     readOnly
-                    min={1}
-                    max={product.stock}
                     className='text-center p-2 border-none w-10'
                   />
                   <button
-                    onClick={handleIncreaseQuantity} 
+                    onClick={handleIncrease} disabled={quantity === product.stock}
+                    
                     className='px-4 text-2xl border bg-slate-500 hover:bg-slate-700 text-white'
-                    disabled={!userId || User?.role !== "buyer"}
+                    
                   >
                     +
                   </button>
                 </div>
                 <button
                   onClick={handleAddToCart}
+                 
                   className='btn btn-primary btn-wide text-white capitalize'
-                  disabled={!userId || User?.role !== "buyer"}
+                  disabled={product.stock === 0 || !userId || User?.role !== "buyer"}
                 >
                   Add To Cart
                 </button>
