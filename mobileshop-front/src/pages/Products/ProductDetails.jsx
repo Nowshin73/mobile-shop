@@ -17,7 +17,7 @@ const ProductDetails = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [User] = useUser();
-  const userId = User?._id;
+  const buyerId = User?._id;
    // Handlers for increasing and decreasing quantity
    const handleIncrease = () => {
     if (quantity < product.stock) {
@@ -54,8 +54,8 @@ const ProductDetails = () => {
     // }
 
     const cartItem = {
-      userId: userId,
-      sellerId:product.userId,
+      userId: buyerId,
+      sellerId:product?.userId || "Seller Id not Found",
       productId: product._id,
       name: product.name,
       quantity,
@@ -159,7 +159,7 @@ const ProductDetails = () => {
                   onClick={handleAddToCart}
                  
                   className='btn btn-primary btn-wide text-white capitalize'
-                  disabled={product.stock === 0 || !userId || User?.role !== "buyer"}
+                  disabled={product.stock === 0 || !buyerId || User?.role !== "buyer"}
                 >
                   Add To Cart
                 </button>

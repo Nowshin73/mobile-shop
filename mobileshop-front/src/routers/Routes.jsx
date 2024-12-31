@@ -24,6 +24,8 @@ import UserList from '../pages/Admin/UserList'
 import SellerHome from '../pages/Seller/SellerHome'
 import MyProduct from '../pages/Seller/MyProduct'
 import Products from '../pages/Products/Products'
+import Checkout from '../pages/Buyer/Checkout'
+import Orders from '../pages/Buyer/Orders'
 
 
 export const router = createBrowserRouter([
@@ -63,7 +65,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/user/dashboard',
-                element: <BuyerDashboard></BuyerDashboard>,
+                element: <PrivateRoute><BuyerDashboard></BuyerDashboard></PrivateRoute>,
                 children: [
                     {
                         path: '/user/dashboard/',
@@ -77,12 +79,20 @@ export const router = createBrowserRouter([
                         path: '/user/dashboard/favourites',
                         element: <Wishlist></Wishlist>
                     },
+                    {
+                        path: '/user/dashboard/checkout',
+                        element: <Checkout></Checkout>
+                    },
+                    {
+                        path: '/user/dashboard/orders',
+                        element: <Orders></Orders>
+                    },
                 ]
             },
 
             {
                 path: '/admin/dashboard',
-                element: <AdminDashboard></AdminDashboard>,
+                element: <PrivateRoute><AdminDashboard></AdminDashboard></PrivateRoute>,
                 children: [
                     {
                         path: '/admin/dashboard',
@@ -96,7 +106,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/seller/dashboard',
-                element: <SellerDashboard></SellerDashboard>,
+                element: <PrivateRoute><SellerDashboard></SellerDashboard></PrivateRoute>,
                 children:[
                     {
                         path: '/seller/dashboard',

@@ -74,6 +74,9 @@ const photoURL = User?.photoURL;
               <Link to="/user/dashboard/favourites" className="block mb-4">
                 Favourite Products
               </Link>
+              <Link to="/user/dashboard/orders" className="block mb-4">
+                Orders
+              </Link>
             </>
           )}
           {user && role === "seller" &&(

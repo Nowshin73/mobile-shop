@@ -1,13 +1,16 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const bodyParser = require("body-parser");
+const Stripe = require("stripe");
 require('dotenv').config()
 
 const port = process.env.PORT || 5000;
-
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 // middleware
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json());
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.zmagebg.mongodb.net/?retryWrites=true&w=majority`;
@@ -27,6 +30,7 @@ const productsCollection = client.db("mobileshop").collection("products");
 const userCollection = client.db("mobileshop").collection("users");
 const cartCollection = client.db("mobileshop").collection("cart");
 const favCollection = client.db("mobileshop").collection("fav");
+const ordersCollection = client.db("mobileshop").collection("orders");
 
 app.get('/products', async (req, res) => {
   const result = await productsCollection.find().toArray();
@@ -216,6 +220,57 @@ app.post('/users', async (req, res) => {
   res.send(result);
 });
 
+app.post("/create-payment-intent", async (req, res) => {
+  try {
+    const { amount, currency } = req.body;
+
+    if (!amount || !currency) {
+      return res.status(400).send({ error: "Amount and currency are required" });
+    }
+
+    // Create a payment intent in BDT
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount, // Amount in the smallest unit of BDT (paisa)
+      currency: "bdt", // Use BDT as currency
+    });
+
+    res.status(200).send({ clientSecret: paymentIntent.client_secret });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: "Failed to create payment intent" });
+  }
+});
+//orders
+app.post('/orders', async (req, res) => {
+  const order= req.body;
+  const result = await ordersCollection.insertOne(order);
+  res.send(result);
+});
+app.get('/orders', async (req, res) => {
+  const result = await ordersCollection.find().toArray();
+  res.send(result);
+});
+// delete user --admin
+app.delete('/orders/:id', async (req, res) => {
+  const id = req.params.id;
+  const query = { _id: new ObjectId(id) };
+  const result = await ordersCollection.deleteOne(query);
+  res.send(result);
+})
+
+app.get('/orders/:id', async (req, res) => {
+  const id = req.params.id;
+  const query = { _id: new ObjectId(id) }
+
+  const options = {
+    // Include only the `title` and `imdb` fields in the returned document
+    projection: {
+      _id: 1, totalPrice: 1, buyerId: 1, products: 1, status: 1
+    },
+  };
+  const result = await ordersCollection.findOne(query, options);
+  res.send(result);
+})
 
 // Send a ping to confirm a successful connection
 //await client.db("admin").command({ ping: 1 });

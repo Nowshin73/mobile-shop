@@ -6,14 +6,15 @@ import { BsXCircle } from 'react-icons/bs'
 import useUser from '../../hooks/useUser'
 import Swal from 'sweetalert2'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 const Cart = () => {
   const [User] = useUser(); // Get the current logged-in user
   const userId = User?._id; // User ID
+  const navigate = useNavigate();
   //const [cartProducts, setCartProducts] = useState([]);
   const [mycart, setMyCart] = useState([]);
-  const [order,setOrder] =useState([]);
+  const [order, setOrder] = useState([]);
   const [loading, setLoading] = useState(true);
   // const [cartIems, setCartItems] = useState([]);
 
@@ -23,10 +24,7 @@ const Cart = () => {
       setLoading(false);
       return;
     }
-    
-   const placeOrder = async () =>{
 
-   }
 
 
     const fetchCartProducts = async () => {
@@ -68,6 +66,36 @@ const Cart = () => {
     fetchCartProducts();
   }, [userId]);
 
+  const placeOrder = async () => {
+    const orders = {
+      totalPrice: (totalPrice + 150).toFixed(2),
+      buyerId: userId,
+      products: mycart,
+      status: "unpaid"
+    }
+    fetch('https://mobiverse.vercel.app/orders', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(productData)
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+                      title: 'success',
+                      text: 'Order placeds successfully',
+                      icon: 'success',
+                      
+                    });
+          navigate("/user/dashboard/orders");
+        }
+
+      })
+
+  }
   const handleDelete = (id) => {
     axios
       .delete(`https://mobiverse.vercel.app/cart/${id}`)
@@ -155,12 +183,12 @@ const Cart = () => {
               </div>
 
               <div className="mt-6">
-                <a
-                  href="#"
-                  className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                <button
+
+                  className="btn flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                 >
-                  Checkout
-                </a>
+                  Place Order
+                </button>
               </div>
               <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                 <p>
