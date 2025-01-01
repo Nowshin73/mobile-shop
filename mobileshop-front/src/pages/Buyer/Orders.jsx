@@ -17,7 +17,7 @@ const Orders = () => {
             return;
         }
 
-        const fetchMyOrders= async () => {
+        const fetchMyOrders = async () => {
             try {
                 const response = await fetch(`https://mobiverse.vercel.app/orders?buyerId=${userId}`, {
                     method: 'GET',
@@ -57,53 +57,32 @@ const Orders = () => {
         fetchMyOrders();
     }, [userId]);
 
-
+    console.log(myorder)
     return (
         <div>
             {myorder.length !== 0 ? (
-                <div className="flex md:w-[70vw] md:h-[100vh] flex-col justify-center  overflow-y-scroll bg-white shadow-xl">
-                    <div >
-                        <div className=" overflow-y-auto px-4 py-6 sm:px-6">
-
-                            <div className="mt-8">
-                                <div className="flow-root">
-                                    <ul role="list" className="-my-6 divide-y divide-gray-200">
-                                        {myorder.map((product) => (
-                                            <li key={product._id} className="flex py-6">
-                                                <div className="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                                    <img alt={product.image} src={product.image} className="size-full object-cover" />
-                                                </div>
-
-                                                <div className="ml-4 flex flex-1 flex-col">
-                                                    <div>
-                                                        <div className="flex justify-between text-base font-medium text-gray-900">
-                                                            <h3>
-                                                                {product.name}
-                                                            </h3>
-                                                            <p className="ml-4 font-serif">{product.price}৳</p>
-                                                        </div>
-
-                                                    </div>
-                                                    <div className="flex flex-1 items-end justify-between text-sm">
-                                                        <p className="text-gray-500">Qty {product.stock}</p>
-
-
-                                                        <div className="flex">
-                                                            <button onClick={() => handleDelete(product._id)} type="button" className="font-medium text-white btn btn-error">
-                                                                Remove
-                                                            </button>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>)
+                <div className='flex flex-col justify-center items-center lg:w-[70vw] lg:h-[80vh]'>
+                   <div className="orderContainer">
+                   <table className='w-[80vh] text-center'>
+                        <tr className=' p-5'>
+                            <th className='bg-indigo-600 text-white border-2 border-white'>Order ID</th>
+                            <th className='bg-indigo-600 text-white border-2 border-white'>Date</th>
+                            <th className='bg-indigo-600 text-white border-2 border-white'>Status</th>
+                        </tr>
+                        <tr>
+                            <td className='bg-indigo-100 text-slate-800 border-2 border-white'>Alfreds Futterkiste</td>
+                            <td className='bg-indigo-100 text-slate-800 border-2 border-white'>Maria Anders</td>
+                            <td className='bg-indigo-100 text-slate-800 border-2 border-white'>Germany</td>
+                        </tr>
+                        <tr>
+                            <td className='bg-indigo-100 text-slate-800 border-2 border-white'>Centro comercial Moctezuma</td>
+                            <td className='bg-indigo-100 text-slate-800 border-2 border-white'>Francisco Chang</td>
+                            <td className='bg-indigo-100 text-slate-800 border-2 border-white'>Mexico</td>
+                        </tr>
+                    </table>
+                   </div>
+                </div>
+            )
                 : <div className='flex flex-col text-7xl text-violet-900 justify-center items-center md:w-[70vw] md:h-[100vh]'> <p>No Order Added</p></div>
             }
         </div>

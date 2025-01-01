@@ -78,7 +78,7 @@ const Cart = () => {
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify(productData)
+      body: JSON.stringify(orders)
     })
       .then(res => res.json())
       .then(data => {
@@ -86,7 +86,7 @@ const Cart = () => {
         if (data.insertedId) {
           Swal.fire({
                       title: 'success',
-                      text: 'Order placeds successfully',
+                      text: 'Order placed successfully',
                       icon: 'success',
                       
                     });
@@ -184,8 +184,8 @@ const Cart = () => {
 
               <div className="mt-6">
                 <button
-
-                  className="btn flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                  onClick={placeOrder}
+                  className=" flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                 >
                   Place Order
                 </button>
