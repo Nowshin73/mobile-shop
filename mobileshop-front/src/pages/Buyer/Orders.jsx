@@ -61,14 +61,17 @@ const Orders = () => {
     return (
         <div>
             {myorder.length !== 0 ? (
-                <div className='flex flex-col justify-center items-center lg:w-[70vw] lg:h-[80vh]'>
-                   <div className="orderContainer">
-                   <table className='w-[80vh] text-center'>
-                        <tr className=' p-5'>
+                <div className='flex flex-col justify-start  items-center lg:w-[70vw] lg:h-[80vh]'>
+                   
+                   <table className='w-[60vw] text-center mt-10'>
+                       <thead>
+                       <tr className=' p-5'>
                             <th className='bg-indigo-600 text-white border-2 border-white'>Order ID</th>
                             <th className='bg-indigo-600 text-white border-2 border-white'>Date</th>
                             <th className='bg-indigo-600 text-white border-2 border-white'>Status</th>
                         </tr>
+                       </thead>
+                        <tbody>
                         <tr>
                             <td className='bg-indigo-100 text-slate-800 border-2 border-white'>Alfreds Futterkiste</td>
                             <td className='bg-indigo-100 text-slate-800 border-2 border-white'>Maria Anders</td>
@@ -79,8 +82,9 @@ const Orders = () => {
                             <td className='bg-indigo-100 text-slate-800 border-2 border-white'>Francisco Chang</td>
                             <td className='bg-indigo-100 text-slate-800 border-2 border-white'>Mexico</td>
                         </tr>
+                        </tbody>
                     </table>
-                   </div>
+                  
                 </div>
             )
                 : <div className='flex flex-col text-7xl text-violet-900 justify-center items-center md:w-[70vw] md:h-[100vh]'> <p>No Order Added</p></div>

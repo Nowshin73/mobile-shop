@@ -24,9 +24,6 @@ const Cart = () => {
       setLoading(false);
       return;
     }
-
-
-
     const fetchCartProducts = async () => {
       try {
         const response = await fetch(`https://mobiverse.vercel.app/cart`, {
@@ -66,36 +63,36 @@ const Cart = () => {
     fetchCartProducts();
   }, [userId]);
 
-  const placeOrder = async () => {
-    const orders = {
-      totalPrice: (totalPrice + 150).toFixed(2),
-      buyerId: userId,
-      products: mycart,
-      status: "unpaid"
-    }
-    fetch('https://mobiverse.vercel.app/orders', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(orders)
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        if (data.insertedId) {
-          Swal.fire({
-                      title: 'success',
-                      text: 'Order placed successfully',
-                      icon: 'success',
+  // const placeOrder = async () => {
+  //   const orders = {
+  //     totalPrice: (totalPrice + 150).toFixed(2),
+  //     buyerId: userId,
+  //     products: mycart,
+  //     status: "unpaid"
+  //   }
+  //   fetch('https://mobiverse.vercel.app/orders', {
+  //     method: 'POST',
+  //     headers: {
+  //       'content-type': 'application/json'
+  //     },
+  //     body: JSON.stringify(orders)
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log(data);
+  //       if (data.insertedId) {
+  //         Swal.fire({
+  //                     title: 'success',
+  //                     text: 'Order placed successfully',
+  //                     icon: 'success',
                       
-                    });
-          navigate("/user/dashboard/orders");
-        }
+  //                   });
+  //         navigate("/user/dashboard/orders");
+  //       }
 
-      })
+  //     })
 
-  }
+  // }
   const handleDelete = (id) => {
     axios
       .delete(`https://mobiverse.vercel.app/cart/${id}`)
@@ -183,12 +180,19 @@ const Cart = () => {
               </div>
 
               <div className="mt-6">
-                <button
-                  onClick={placeOrder}
+                {/* <button
+                  //onClick={placeOrder}
                   className=" flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                 >
                   Place Order
-                </button>
+                </button> */}
+                <Link
+                  to={"/user/dashboard/checkout"}
+                  //onClick={placeOrder}
+                  className=" flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                >
+                  Place Order
+                </Link>
               </div>
               <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                 <p>

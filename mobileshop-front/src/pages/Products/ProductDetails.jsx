@@ -13,6 +13,7 @@ import useUser from '../../hooks/useUser';
 
 const ProductDetails = () => {
   const product = useLoaderData();
+  
   //const stock = product.stock;
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -55,12 +56,13 @@ const ProductDetails = () => {
 
     const cartItem = {
       userId: buyerId,
+      userEmail: User?.email,
       sellerId:product?.userId || "Seller Id not Found",
       productId: product._id,
       name: product.name,
       quantity,
       image: product.images,
-      price: product.price*quantity,
+      price: product.price,
     };
 
     fetch("https://mobiverse.vercel.app/cart", {
@@ -130,7 +132,7 @@ const ProductDetails = () => {
                 <ReactStars {...options} />
                 <span>({product.ratings}  )</span>
               </div>
-              <p className='text-2xl font-thin'> ${product.price}</p>
+              <p className='text-2xl font-thin'> {product.price}৳</p>
 
               <div className="add-cart flex items-center gap-5">
                 <div className="quantity flex items-center gap-2">
